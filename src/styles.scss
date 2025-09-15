@@ -1,1 +1,95 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('ngx-toastr/toastr');
+@import './colors.scss';
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('./assets/fonts/OpenSans-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('./assets/fonts/OpenSans-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 135px;
+    overflow-x: hidden;
+    cursor: default;
+}
+
+:host {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.heading-text {
+    font-size: 28px;
+    font-weight: 600;
+    color: $heading-color;
+}
+
+.kt-pointer {
+    cursor: pointer !important;
+}
+
+.section {
+    padding: 0 3%;
+}
+
+.common-background-color {
+    background-color: $common-background-color;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+    display: none;
+    z-index: 1000;
+    background-color: #0F658A;
+}
+
+#back-to-top:hover {
+    animation: fade-up 1.5s infinite linear;
+}
+
+@keyframes fade-up {
+    0% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    75% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+.scroll-top-icon {
+    background-color: #0F658A;
+    color: #fff;
+}

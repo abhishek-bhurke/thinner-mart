@@ -1,0 +1,88 @@
+@import '../../../colors.scss';
+
+.logo-box {
+    // background-color: #88bdf5;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.navbar-nav .nav-link {
+    color: gray;
+    font-weight: 600;
+    margin-right: 20px;
+    position: relative;
+}
+
+.navbar-nav .nav-link.active {
+    color: $color-text-header-active;
+}
+
+s .custom-link:hover {
+    color: $color-text-header-active !important;
+}
+
+@media (min-width: 992px) {
+    .navbar-nav .nav-link.active::after {
+        content: '';
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: $color-accent;
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+    }
+}
+
+.custom-link {
+    cursor: pointer;
+}
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+@media (max-width:360px) {
+    .fixed-header {
+        padding-right: 1rem !important;
+        padding-left: 1rem !important;
+    }
+}
+
+.header-company-logo {
+    width: 96px;
+    height: 101px;
+}
+
+@media (max-width:490px) {
+    .header-company-logo {
+        width: 96px;
+        height: 101px;
+    }
+}
+
+.menu-position {
+    position: relative;
+    bottom: 10px;
+}
+
+.header-cart {
+    padding: 14px 30px 10px 30px;
+    border: 1px solid #000;
+    display: flex;
+    position: relative;
+}
+
+::ng-deep.badge {
+    right: 11% !important;
+    font-size: 9px !important;
+}

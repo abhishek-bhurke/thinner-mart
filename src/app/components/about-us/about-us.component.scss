@@ -1,0 +1,116 @@
+@import '../../../colors.scss';
+
+.about-us-image {
+    width: 90%;
+    height: 100%;
+}
+
+.about-us-text {
+    padding-left: 5%;
+}
+
+@media (max-width: 768px) {
+    .about-us-image {
+        width: 100%;
+        margin-top: 3%
+    }
+
+    .about-mehta-corporation-2 {
+        padding-left: 10%;
+    }
+}
+
+.about-mehta-corporation-1 {
+    padding-left: 10%;
+}
+
+.about-us-icons {
+    padding: 12px;
+    border-radius: 50%;
+    background-color: $about-us-icons-bg;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    color: $heading-color;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.browse-product-icon {
+    padding: 12px;
+    border-radius: 50%;
+    background-color: #f92c8b;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.why-choose-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: $heading-color;
+    transition: color .5s;
+}
+
+.about-us-icons-container:hover {
+    .about-us-icons {
+        background-color: $heading-color;
+        color: $about-us-icons-bg
+    }
+
+    .why-choose-text {
+        color: $about-us-icons-bg;
+    }
+}
+
+.ready-to-experience-container {
+    background-color: #22cbd0;
+    border-radius: 5px;
+}
+
+.browse-our-products {
+    display: flex;
+    background-color: #fff;
+    border-radius: 100px;
+    width: fit-content;
+    transition: background-color .5s;
+}
+
+.browse-our-products:hover {
+    .browse-product-icon {
+        background-color: #fff;
+        color: #f92c8b
+    }
+
+    .browse-our-products-text {
+        color: #fff;
+        background-color: #f92c8b;
+    }
+
+    background-color: #f92c8b;
+}
+
+.browse-our-products-text {
+    color: #212529;
+    background-color: #fff;
+    transition: color .5s;
+    transition: background-color .5s;
+}
+
+.browse-products-container {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .browse-products-container {
+        justify-content: center;
+        margin-top: 16px;
+    }
+}
