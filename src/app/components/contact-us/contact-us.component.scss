@@ -1,4 +1,4 @@
-@import '../../../colors.scss';
+@use '../../../colors.scss' as *;
 
 .contact-us-image {
     width: 90%;

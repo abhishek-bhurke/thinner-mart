@@ -1,4 +1,4 @@
-@import '../../../colors.scss';
+@use '../../../colors.scss' as *;
 
 .carousel-image {
     width: 100%;
@@ -87,4 +87,8 @@
 
 .why-buy-icon-color {
     color: #539CBB;
+}
+
+.home-container {
+    background-color: #fff;
 }
