@@ -1,3 +1,16 @@
+<div class="fixed-top-nav d-flex justify-content-between">
+    <div class="text-white">GSTIN: 27AAWPM0837H1ZA | MSME UDYAM No: MH-33-0208978</div>
+    <div class="d-flex align-items-center"><mat-icon class="text-white me-1 kt-pointer">facebook</mat-icon>
+        <span class="kt-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="22" height="22" viewBox="0 0 50 50"
+                style="fill:#FFFFFF;">
+                <path
+                    d="M25,2C12.318,2,2,12.318,2,25c0,3.96,1.023,7.854,2.963,11.29L2.037,46.73c-0.096,0.343-0.003,0.711,0.245,0.966 C2.473,47.893,2.733,48,3,48c0.08,0,0.161-0.01,0.24-0.029l10.896-2.699C17.463,47.058,21.21,48,25,48c12.682,0,23-10.318,23-23 S37.682,2,25,2z M36.57,33.116c-0.492,1.362-2.852,2.605-3.986,2.772c-1.018,0.149-2.306,0.213-3.72-0.231 c-0.857-0.27-1.957-0.628-3.366-1.229c-5.923-2.526-9.791-8.415-10.087-8.804C15.116,25.235,13,22.463,13,19.594 s1.525-4.28,2.067-4.864c0.542-0.584,1.181-0.73,1.575-0.73s0.787,0.005,1.132,0.021c0.363,0.018,0.85-0.137,1.329,1.001 c0.492,1.168,1.673,4.037,1.819,4.33c0.148,0.292,0.246,0.633,0.05,1.022c-0.196,0.389-0.294,0.632-0.59,0.973 s-0.62,0.76-0.886,1.022c-0.296,0.291-0.603,0.606-0.259,1.19c0.344,0.584,1.529,2.493,3.285,4.039 c2.255,1.986,4.158,2.602,4.748,2.894c0.59,0.292,0.935,0.243,1.279-0.146c0.344-0.39,1.476-1.703,1.869-2.286 s0.787-0.487,1.329-0.292c0.542,0.194,3.445,1.604,4.035,1.896c0.59,0.292,0.984,0.438,1.132,0.681 C37.062,30.587,37.062,31.755,36.57,33.116z">
+                </path>
+            </svg>
+        </span>
+    </div>
+</div>
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-header shadow-none">
     <a class="navbar-brand d-flex align-items-center me-0" href="#">
         <div class="logo-box text-white text-center"><img class="header-company-logo"
@@ -23,9 +36,15 @@
                 <a class="nav-link custom-link" [class.active]="activeSection==='products'"
                     [routerLink]="['products']">Products</a>
             </li>
+            <li class="nav-item login-nav" (click)="openLoginDialog()">
+                <a class="nav-link custom-link">Login</a>
+            </li>
         </ul>
     </div>
-    <div class="header-cart">
+    <div class="login-button me-2">
+        <button class="btn btn-outline-primary" (click)="openLoginDialog()">Login</button>
+    </div>
+    <div class="header-cart" data-bs-toggle="offcanvas" data-bs-target="#shoppingcartcanvas">
         <span class="me-2">₹ {{'0.00'}}</span>
         <mat-icon>shopping_cart</mat-icon>
         <span class="position-absolute translate-middle badge rounded-pill bg-danger">
@@ -33,3 +52,34 @@
         </span>
     </div>
 </nav>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingcartcanvas" aria-labelledby="shoppingcartcanvasLabel">
+    <div class="offcanvas-header">
+        <h5 id="offcanvasRightLabel" class="mb-0">Cart</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" *ngIf="cartItems.length">
+        <div class="products-list border-bottom-1 pb-3">
+            <div class="row">
+                <div class="col-md-4 d-flex flex-column justify-content-center align-items-center"><img
+                        src="../../../assets/images/top-product-1.png" width="80"></div>
+                <div class="col-md-8 d-flex flex-column justify-content-between">
+                    <div class="fw-bold">ROYAL GP THINNER - 1 Ltr</div>
+                    <div class="d-flex justify-content-between"><span>3 x
+                            ₹49.00</span><span><mat-icon class="kt-pointer">cancel</mat-icon></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center p-3 subtotal border-bottom-1">
+            <h5 class="heading-color fw-bold mb-0">Subtotal : ₹527.00</h5>
+        </div>
+        <div class="cart-buttons mt-3 d-flex justify-content-evenly">
+            <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 me-1" (click)="viewCart()"
+                data-bs-dismiss="offcanvas">View
+                Cart</button>
+            <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 ms-1">Checkout</button>
+        </div>
+    </div>
+    <div class="offcanvas-body" *ngIf="cartItems.length==0">
+        No Products in the cart.
+    </div>
+</div>

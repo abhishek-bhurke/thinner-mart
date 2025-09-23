@@ -1,0 +1,4 @@
+<div class="zoom-product-container" (click)="$event.stopPropagation()">
+    <img src="../../../../assets/images/top-product-1.png" [ngStyle]="{ transform: getTransformStyle() }"
+        (click)="toggleZoom($event)" (mousedown)="onMouseDown($event)">
+</div>

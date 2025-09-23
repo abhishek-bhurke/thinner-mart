@@ -18,7 +18,7 @@
     color: $color-text-header-active;
 }
 
-s .custom-link:hover {
+.custom-link:hover {
     color: $color-text-header-active !important;
 }
 
@@ -44,11 +44,25 @@ s .custom-link:hover {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1030;
+    z-index: 1000;
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding-right: 1.5rem;
     padding-left: 1.5rem;
+}
+
+.fixed-top-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1001;
+    background-color: $color-text-header;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 @media (max-width:360px) {
@@ -68,7 +82,30 @@ s .custom-link:hover {
         width: 96px;
         height: 101px;
     }
+
+    .login-button {
+        display: none;
+    }
 }
+
+@media (max-width:566px) {
+    .fixed-header {
+        top: 30px;
+    }
+}
+
+@media (max-width:348px) {
+    .fixed-header {
+        top: 78px;
+    }
+}
+
+@media (min-width:490px) {
+    .login-nav {
+        display: none;
+    }
+}
+
 
 .menu-position {
     position: relative;
@@ -85,4 +122,8 @@ s .custom-link:hover {
 ::ng-deep.badge {
     right: 11% !important;
     font-size: 9px !important;
+}
+
+.cart-buttons button {
+    padding: 14px 30px 10px 30px;
 }

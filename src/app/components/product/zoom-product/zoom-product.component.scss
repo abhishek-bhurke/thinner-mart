@@ -1,0 +1,17 @@
+.zoom-product-container img {
+    width: 100%;
+    cursor: grab;
+}
+
+.zoomed {
+    transform: scale(2);
+    cursor: zoom-out;
+}
+
+::ng-deep.zoom-in-dialog .mat-mdc-dialog-surface {
+    border-radius: 0px !important;
+}
+
+.zoom-product-container img:active {
+    cursor: grabbing;
+}

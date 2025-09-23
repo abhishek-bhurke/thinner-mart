@@ -9,5 +9,7 @@ export const routes: Routes = [
     { path: 'refund-and-replacement-policy', loadComponent: () => import('./components/refund-and-replacement-policy/refund-and-replacement-policy.component').then(mod => mod.RefundAndReplacementPolicyComponent) },
     { path: 'terms-and-conditions', loadComponent: () => import('./components/terms-and-conditions/terms-and-conditions.component').then(mod => mod.TermsAndConditionsComponent) },
     { path: 'contact-us', loadComponent: () => import('./components/contact-us/contact-us.component').then(mod => mod.ContactUsComponent) },
+    { path: 'product', loadComponent: () => import('./components/product/product.component').then(mod => mod.ProductComponent) },
+    { path: 'cart', loadComponent: () => import('./components/cart/cart.component').then(mod => mod.CartComponent) },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

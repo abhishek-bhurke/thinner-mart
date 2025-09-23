@@ -1,0 +1,74 @@
+<div class="cart-section">
+    <div class="heading-text mt-4">Cart</div>
+    <div class="row gx-5 mt-2">
+        <div class="col-md-8">
+            <div class="border-bottom-1 d-flex justify-content-between">
+                <div class="pb-2">PRODUCT</div>
+                <div class="pb-2">TOTAL</div>
+            </div>
+            <div class="row mt-3 border-bottom-1 pb-3">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4"><img class="w-100" src="../../../assets/images/top-product-1.png">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="fs-5 heading-color">TOP 999 NC THINNER</div>
+                            <div class="mt-1">₹49.00</div>
+                            <div class="mt-1">Size: 500 ml</div>
+                            <div class="mt-1"><p-inputnumber [showButtons]="true" buttonLayout="horizontal"
+                                    inputId="horizontal" spinnerMode="horizontal" [step]="1" [max]="10" [min]="1"
+                                    class="mt-2">
+                                    <ng-template #incrementbuttonicon>
+                                        <mat-icon class="text-black">add</mat-icon>
+                                    </ng-template>
+                                    <ng-template #decrementbuttonicon>
+                                        <mat-icon class="text-black">remove</mat-icon>
+                                    </ng-template>
+                                </p-inputnumber></div>
+                            <div class="mt-1"><span class="heading-color underline kt-pointer">Remove item</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 fs-5 heading-color text-end">
+                    ₹489,951.00
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="border-bottom-1 pb-2">CART TOTALS</div>
+            <div class="border-bottom-1">
+                <div class="accordion" id="couponAccordionMain">
+                    <div class="accordion-item border-0">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed px-0" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#couponAccordion" aria-expanded="false" aria-controls="couponAccordion">
+                                Add coupons
+                            </button>
+                        </h2>
+                        <div id="couponAccordion" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#couponAccordionMain">
+                            <div class="accordion-body px-0">
+                                <div class="d-flex">
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <input matInput placeholder="Enter code" [(ngModel)]="couponCode">
+                                    </mat-form-field>
+                                    <div class="coupon-apply mt-2 ms-2" [class.coupon-apply-disable]="couponCode==''">
+                                        Apply
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-bottom-1 d-flex fw-bold h5 heading-color justify-content-between py-3">
+                <span>Estimated total</span><span>₹1,439,856.00</span>
+            </div>
+            <div class="mt-3">
+                <div class="proceed-to-checkout">
+                    Proceed to Checkcout
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

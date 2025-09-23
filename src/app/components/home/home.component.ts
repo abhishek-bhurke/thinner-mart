@@ -2,11 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { banner, benefitsBanner, mobBanner, mobBenefitsBanner, topProducts } from './banner';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
+import { TooltipModule } from 'primeng/tooltip';
+import { ProductService } from '../../services/product.service';
+
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, CommonModule, RouterLink, MatIconModule],
+  imports: [CarouselModule, CommonModule, RouterLink, MatIconModule, TooltipModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -27,6 +30,7 @@ export class HomeComponent implements OnInit {
   banners: any[] = [];
   benefitsBanner: any;
   topProducts: any;
+  constructor(private router: Router, private productService: ProductService) { }
   ngOnInit() {
     this.responsiveOptions = [
       {
@@ -53,6 +57,15 @@ export class HomeComponent implements OnInit {
     if (typeof window !== 'undefined') {
       this.onResize()
     }
-    this.topProducts = topProducts
+    this.topProducts = topProducts;
+    this.getAllProducts();
+  }
+  redirectToProduct() {
+    this.router.navigate(['product'], { queryParams: { id: 0 } })
+  }
+  getAllProducts() {
+    this.productService.getAllProducts().subscribe(res => {
+
+    })
   }
 }

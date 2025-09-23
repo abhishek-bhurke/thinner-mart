@@ -1,0 +1,68 @@
+@use '../../../colors.scss' as *;
+
+::ng-deep.accordion-button {
+    color: #000 !important;
+    background-color: $common-background-color !important;
+}
+
+::ng-deep.accordion-button:focus {
+    box-shadow: none !important;
+}
+
+::ng-deep.accordion-body {
+    background-color: $common-background-color !important;
+}
+
+.coupon-apply {
+    height: 30px;
+    width: 180px;
+    font-size: 20px;
+    padding: 22px 26px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #ffcd57;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.proceed-to-checkout {
+    height: 30px;
+    width: 100%;
+    font-size: 20px;
+    padding: 22px 26px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #ffcd57;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.coupon-apply-disable {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.cart-section {
+    padding: 0 7%;
+}
+
+::ng-deep.p-inputtext {
+    background-color: transparent !important;
+    color: #000 !important;
+    pointer-events: none;
+    caret-color: transparent;
+}
+
+::ng-deep.p-inputtext:enabled:focus {
+    border-color: #52525b !important;
+}
+
+::ng-deep.p-inputnumber-button:hover {
+    background-color: transparent !important;
+}
+
+::ng-deep.p-inputnumber-input {
+    width: 45px !important;
+}

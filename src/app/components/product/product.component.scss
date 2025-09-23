@@ -1,0 +1,253 @@
+@use '../../../colors.scss' as *;
+
+.product-section {
+    padding: 2% 8%;
+}
+
+.product-page-image {
+    width: 100%;
+    height: 100%;
+}
+
+.product-path {
+    font-size: 16px;
+    color: #777;
+}
+
+.product-image-container {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image-container img {
+    display: block;
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+    position: relative;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.zoom-icon-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f9f6fe;
+    color: #00000099;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0px;
+}
+
+.product-name {
+    font-size: 20px;
+    color: #000;
+}
+
+.product-price {
+    font-size: 27px;
+    color: #000;
+}
+
+.product-info {
+    font-size: 14px;
+}
+
+
+.sizes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.size-box {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 10px 16px;
+    cursor: pointer;
+    width: 110px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.size-box.selected {
+    border-color: #4a90e2;
+    background: #e6f0ff;
+    box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
+}
+
+.size-box .label {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.size-box .price {
+    margin-top: 4px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+::ng-deep.p-inputtext {
+    background-color: transparent !important;
+    color: #000 !important;
+    pointer-events: none;
+    caret-color: transparent;
+}
+
+::ng-deep.p-inputtext:enabled:focus {
+    border-color: #52525b !important;
+}
+
+::ng-deep.p-inputnumber-button:hover {
+    background-color: transparent !important;
+}
+
+.add-to-cart {
+    height: 30px;
+    width: 180px;
+    font-size: 20px;
+    padding: 17px 26px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background: #ffcd57;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.add-to-cart-disable {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.tabs {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.tab {
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab.active {
+    color: #000;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: $heading-color;
+    border-radius: 2px 2px 0 0;
+}
+
+.tab-content {
+    font-size: 15px;
+    color: #444;
+}
+
+.our-products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+
+.our-products-grid .products-div {
+    flex: 1 1 calc(20% - 16px);
+    max-width: calc(20% - 16px);
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 900px) {
+    .our-products-grid .products-div {
+        flex: 1 1 calc(33.33% - 16px);
+        max-width: calc(33.33% - 16px);
+    }
+}
+
+@media (max-width: 600px) {
+    .our-products-grid .products-div {
+        flex: 1 1 calc(50% - 16px);
+        max-width: calc(50% - 16px);
+    }
+}
+
+@media (max-width: 400px) {
+    .our-products-grid .products-div {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+.select-options-button {
+    background-color: $heading-color;
+    text-align: center;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 50px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.product-image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.product-image-container img {
+    width: 100%;
+    display: block;
+}
+
+.icon-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 5px;
+    border-radius: 50%;
+    display: none;
+    cursor: pointer;
+    font-size: 0px;
+    opacity: .6;
+}
+
+.icon-overlay:hover {
+    opacity: 1;
+}
+
+.product-image-container:hover .icon-overlay {
+    display: block;
+}
+
+::ng-deep.p-inputnumber-input {
+    width: 45px !important;
+}
