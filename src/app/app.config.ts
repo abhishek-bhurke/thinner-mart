@@ -14,7 +14,6 @@ export const appConfig: ApplicationConfig = {
     positionClass: 'toast-top-center',
     preventDuplicates: true,
     progressBar: true,
-    closeButton: true,
-    timeOut: 0
+    closeButton: true
   }), provideAnimations()]
 };

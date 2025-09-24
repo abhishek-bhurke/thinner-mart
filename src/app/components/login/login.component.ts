@@ -7,6 +7,9 @@ import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dial
 import { MatIconModule } from "@angular/material/icon";
 import { SignUpComponent } from '../sign-up/sign-up.component';
 import { LoginService } from '../../services/login.service';
+import { ToastrService } from 'ngx-toastr';
+import { StorageService } from '../../services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +28,10 @@ export class LoginComponent implements OnInit {
   constructor(public matdialogRef: MatDialogRef<LoginComponent>,
     private fb: FormBuilder,
     private matdialog: MatDialog,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private toastrService: ToastrService,
+    private storageService: StorageService,
+    private router: Router) { }
   ngOnInit() {
     this.createLoginForm()
   }
@@ -41,9 +47,11 @@ export class LoginComponent implements OnInit {
       'password': this.loginForm.controls['password'].value
     }
     this.loginService.login(data).subscribe(res => {
-
+      this.toastrService.success(res.message)
+      this.storageService.setItem('token', res.data.token);
+      this.loginService.isLoggedInSubject.next(true)
+      this.matdialogRef.close();
     })
-    this.matdialogRef.close();
   }
   signUpPage() {
     let dialogRef = this.matdialog.open(SignUpComponent, {

@@ -7,10 +7,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'primeng/tabs';
 import { Router } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, MatIconModule, InputNumberModule, FormsModule, TabsModule],
+  imports: [CommonModule, MatIconModule, InputNumberModule, FormsModule, TabsModule, TooltipModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })

@@ -36,13 +36,17 @@
                 <a class="nav-link custom-link" [class.active]="activeSection==='products'"
                     [routerLink]="['products']">Products</a>
             </li>
-            <li class="nav-item login-nav" (click)="openLoginDialog()">
+            <li class="nav-item login-nav" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
                 <a class="nav-link custom-link">Login</a>
+            </li>
+            <li class="nav-item login-nav" (click)="logout()" *ngIf="isLoggedIn">
+                <a class="nav-link custom-link">Logout</a>
             </li>
         </ul>
     </div>
     <div class="login-button me-2">
-        <button class="btn btn-outline-primary" (click)="openLoginDialog()">Login</button>
+        <button class="btn btn-outline-primary" (click)="openLoginDialog()" *ngIf="!isLoggedIn">Login</button>
+        <button class="btn btn-outline-danger" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
     </div>
     <div class="header-cart" data-bs-toggle="offcanvas" data-bs-target="#shoppingcartcanvas">
         <span class="me-2">₹ {{'0.00'}}</span>

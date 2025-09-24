@@ -14,4 +14,13 @@ export class ProductService {
   getProductById(data: any): Observable<any> {
     return this.http.post(`/api/Product/GetById`, data);
   }
+  addProduct(data: any): Observable<any> {
+    return this.http.post(`/api/Product/Add`, data);
+  }
+  updateProduct(data: any): Observable<any> {
+    return this.http.post(`/api/Product/Update`, data);
+  }
+  deleteProduct(data: any): Observable<any> {
+    return this.http.post(`/api/Product/Delete`, data);
+  }
 }

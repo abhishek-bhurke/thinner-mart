@@ -19,7 +19,7 @@ export const AuthInterceptor: HttpInterceptorFn = (
   const storageService = inject(StorageService)
   const token = storageService.getItem('token');
   const cloned = token
-    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}`, url: environment.API_URL + req.url } })
+    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` }, url: environment.API_URL + req.url })
     : req.clone({ url: environment.API_URL + req.url });
 
   return next(cloned);

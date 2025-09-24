@@ -5,6 +5,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { filter } from 'rxjs';
 import { LoginComponent } from '../login/login.component';
 import { CommonModule } from '@angular/common';
+import { LoginService } from '../../services/login.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +17,9 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent implements OnInit {
   isCollapse: boolean = false;
   activeSection: string = 'home';
-  cartItems: any[] = [1]
-  constructor(private eRef: ElementRef, private router: Router, private dialog: MatDialog) {
+  cartItems: any[] = [1];
+  isLoggedIn: boolean = false;
+  constructor(private eRef: ElementRef, private router: Router, private dialog: MatDialog, private loginService: LoginService, private storageService: StorageService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (typeof window !== 'undefined') {
@@ -27,6 +30,14 @@ export class HeaderComponent implements OnInit {
           });
         }
         this.routeChange();
+      }
+    });
+    this.loginService.isLoggedIn$.subscribe((res: any) => {
+      if (this.loginService.isLoggedIn()) {
+        this.isLoggedIn = true;
+      }
+      else {
+        this.isLoggedIn = false;
       }
     })
   }
@@ -75,5 +86,10 @@ export class HeaderComponent implements OnInit {
   }
   viewCart() {
     this.router.navigate(['cart']);
+  }
+  logout() {
+    this.storageService.clear();
+    this.loginService.isLoggedInSubject.next(false);
+    this.router.navigate([''])
   }
 }

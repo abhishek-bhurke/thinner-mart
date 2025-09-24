@@ -52,9 +52,9 @@ export class SignUpComponent implements OnInit {
       'pincode': this.signupForm.controls['pincode'].value,
       'password': this.signupForm.controls['password'].value
     }
-    this.toastrService.success('success')
     this.loginService.registerUser(data).subscribe(res => {
+      this.toastrService.success(res.message)
+      this.matdialogRef.close('')
     })
-    this.matdialogRef.close('')
   }
 }
