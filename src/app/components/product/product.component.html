@@ -29,7 +29,8 @@
                     </div>
                 </div>
             </div>
-            <div class="price-clear text-muted kt-pointer mt-2" (click)="selectedIndex=''">CLEAR</div>
+            <div class="price-clear mt-2"><span class="text-muted kt-pointer" (click)="selectedIndex=''">CLEAR</span>
+            </div>
             <div class="quantity-wrapper mt-2">
                 <div class="fs-6">Quantity:</div>
                 <p-inputnumber [(ngModel)]="quantity" [showButtons]="true" buttonLayout="horizontal"
@@ -43,7 +44,6 @@
                 </p-inputnumber>
                 <div class="units-per-box text-muted mt-1">Units per box: 50</div>
             </div>
-            {{selectedIndex}}
             <div class="add-to-cart mt-3" [class.add-to-cart-disable]="selectedIndex==''">
                 Add to cart
             </div>

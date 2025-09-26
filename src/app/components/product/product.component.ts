@@ -6,8 +6,9 @@ import { ZoomProductComponent } from './zoom-product/zoom-product.component';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'primeng/tabs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -15,7 +16,7 @@ import { TooltipModule } from 'primeng/tooltip';
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit {
   transformOrigin = 'center center';
   isZoomed = false;
   sizes = [
@@ -29,8 +30,18 @@ export class ProductComponent {
   selectedIndex: any = '';
   quantity: number = 1
   activeTab: 'description' | 'info' = 'description';
+  id: any;
 
-  constructor(private matDialog: MatDialog, private router: Router) { }
+  constructor(private matDialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute,
+    private productService: ProductService) { }
+  ngOnInit() {
+    this.id = this.route.snapshot.queryParamMap.get('id');
+    if (this.id) {
+      this.getProductById()
+    }
+  }
   onMouseMove(event: MouseEvent, container: HTMLElement) {
     const rect = container.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 100;
@@ -60,5 +71,13 @@ export class ProductComponent {
   }
   redirectToProduct() {
     this.router.navigate(['product'], { queryParams: { id: 0 } })
+  }
+  getProductById() {
+    let data = {
+      id: this.id
+    }
+    this.productService.getProductById(data).subscribe(res => {
+
+    })
   }
 }

@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   banners: any[] = [];
   benefitsBanner: any;
   topProducts: any;
+  productsList: any[] = [];
   constructor(private router: Router, private productService: ProductService) { }
   ngOnInit() {
     this.responsiveOptions = [
@@ -60,12 +61,12 @@ export class HomeComponent implements OnInit {
     this.topProducts = topProducts;
     this.getAllProducts();
   }
-  redirectToProduct() {
-    this.router.navigate(['product'], { queryParams: { id: 0 } })
+  redirectToProduct(id: any) {
+    this.router.navigate(['product'], { queryParams: { id: id } })
   }
   getAllProducts() {
     this.productService.getAllProducts().subscribe(res => {
-
+      this.productsList = res.data;
     })
   }
 }
