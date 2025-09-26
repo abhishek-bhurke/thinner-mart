@@ -31,6 +31,7 @@ export class ProductComponent implements OnInit {
   quantity: number = 1
   activeTab: 'description' | 'info' = 'description';
   id: any;
+  product: any;
 
   constructor(private matDialog: MatDialog,
     private router: Router,
@@ -77,7 +78,7 @@ export class ProductComponent implements OnInit {
       id: this.id
     }
     this.productService.getProductById(data).subscribe(res => {
-
+      this.product = res.data
     })
   }
 }
