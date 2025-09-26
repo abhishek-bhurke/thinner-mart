@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    API_URL: 'https://0a13dfce069d.ngrok-free.app'
+    API_URL: 'http://reglensapi.techket.shop:8192'
 };
