@@ -14,11 +14,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { OrderService } from '../../services/order.service';
 import { PaymentService } from '../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { AdvanceAmountConfirmationComponent } from './advance-amount-confirmation/advance-amount-confirmation.component';
 declare var Razorpay: any;
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatRadioModule],
+  imports: [CommonModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatRadioModule, MatDialogModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
@@ -37,7 +39,8 @@ export class CheckoutComponent {
     private router: Router,
     private orderService: OrderService,
     private paymentService: PaymentService,
-    private toastrService: ToastrService) { }
+    private toastrService: ToastrService,
+    private dialog: MatDialog) { }
   ngOnInit() {
     this.getCart();
     this.createCheckoutForm();
@@ -89,8 +92,20 @@ export class CheckoutComponent {
         if (this.checkoutForm.controls['paymentMode'].value == 'cod') {
           if (this.checkoutForm.controls['city'].value.toLowerCase().includes('mumbai')) {
             if (this.total > 10999) {
-              this.advancedAmount = (this.total % 10) > 3000 ? 3000 : (this.total % 10);
-              this.placeOrderFunc(true);
+              this.advancedAmount = (this.total / 10) > 3000 ? 3000 : (this.total / 10);
+              let dialogRef = this.dialog.open(AdvanceAmountConfirmationComponent, {
+                data: {
+                  advancedAmount: this.advancedAmount,
+                  total: this.total
+                },
+                height: 'auto',
+                width: 'auto',
+                disableClose: true,
+              })
+              dialogRef.afterClosed().subscribe(res => {
+                if (res)
+                  this.placeOrderFunc(true);
+              })
             }
             else {
               this.advancedAmount = this.total;
@@ -129,7 +144,7 @@ export class CheckoutComponent {
       "isAdvance": isAdvance ? true : false
     }
     this.orderService.addOrder(data).subscribe(res => {
-      if (data.method == 'online') {
+      if (data.method == 'online' || isAdvance) {
         let resData = JSON.parse(res.data)
         let data = {
           "key": environment.razorPay_key,
@@ -152,6 +167,7 @@ export class CheckoutComponent {
         rzp.open();
       }
       else {
+        this.toastrService.success(res.message)
         this.router.navigate(['orders']);
       }
     })
@@ -163,6 +179,7 @@ export class CheckoutComponent {
       "razorpaySignature": res.razorpay_signature
     }
     this.paymentService.verifyPayment(data).subscribe(res => {
+      this.toastrService.success(res.message)
       this.router.navigate(['orders']);
     })
   }

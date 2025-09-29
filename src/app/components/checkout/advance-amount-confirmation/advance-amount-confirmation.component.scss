@@ -1,8 +1,4 @@
-@use '../../../colors.scss' as *;
-
-::ng-deep .cdk-overlay-container {
-    z-index: 1030 !important;
-}
+@use '../../../../colors.scss' as *;
 
 .btn-login {
     border: 1px solid $heading-color;

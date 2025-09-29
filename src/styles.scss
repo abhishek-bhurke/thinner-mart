@@ -150,3 +150,7 @@ html {
 .product-list-name {
     height: 48px !important;
 }
+
+::ng-deep.cdk-global-scrollblock {
+    overflow: visible !important;
+}
