@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     { path: '', loadComponent: () => import('./components/home/home.component').then(mod => mod.HomeComponent) },
@@ -11,5 +12,8 @@ export const routes: Routes = [
     { path: 'contact-us', loadComponent: () => import('./components/contact-us/contact-us.component').then(mod => mod.ContactUsComponent) },
     { path: 'product', loadComponent: () => import('./components/product/product.component').then(mod => mod.ProductComponent) },
     { path: 'cart', loadComponent: () => import('./components/cart/cart.component').then(mod => mod.CartComponent) },
+    { path: 'checkout', loadComponent: () => import('./components/checkout/checkout.component').then(mod => mod.CheckoutComponent), canActivate: [authGuard] },
+    { path: 'orders', loadComponent: () => import('./components/orders/orders.component').then(mod => mod.OrdersComponent), canActivate: [authGuard] },
+    { path: 'order-details', loadComponent: () => import('./components/orders/order-details/order-details.component').then(mod => mod.OrderDetailsComponent), canActivate: [authGuard] },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

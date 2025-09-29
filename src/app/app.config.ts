@@ -12,8 +12,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay()), providePrimeNG({ theme: { preset: Aura } }), provideHttpClient(withInterceptors([AuthInterceptor])), provideToastr({
     positionClass: 'toast-top-center',
-    preventDuplicates: true,
+    preventDuplicates: false,
     progressBar: true,
-    closeButton: true
+    closeButton: false,
   }), provideAnimations()]
 };

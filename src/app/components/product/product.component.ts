@@ -9,6 +9,10 @@ import { TabsModule } from 'primeng/tabs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { LoginService } from '../../services/login.service';
+import { StorageService } from '../../services/storage.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-product',
@@ -27,21 +31,34 @@ export class ProductComponent implements OnInit {
     { label: '20 LTR', price: 1660 },
     { label: '220 LTR', price: 16999 }
   ];
-  selectedIndex: any = '';
+  selectedIndex: number = -1;
   quantity: number = 1
   activeTab: 'description' | 'info' = 'description';
   id: any;
   product: any;
+  selectedProduct: any = '';
+  productsList: any[] = [];
+  baseUrl = environment.API_URL;
 
   constructor(private matDialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private cartService: CartService,
+    private loginService: LoginService,
+    private storageService: StorageService) { }
   ngOnInit() {
-    this.id = this.route.snapshot.queryParamMap.get('id');
-    if (this.id) {
-      this.getProductById()
-    }
+    // this.id = this.route.snapshot.queryParamMap.get('id');
+    this.route.queryParamMap.subscribe(params => {
+      this.id = params.get('id');
+      if (this.id) {
+        this.getProductById();
+      }
+      this.getAllProducts();
+      this.selectedProduct = '';
+      this.selectedIndex = -1;
+      this.quantity = 1;
+    })
   }
   onMouseMove(event: MouseEvent, container: HTMLElement) {
     const rect = container.getBoundingClientRect();
@@ -65,13 +82,14 @@ export class ProductComponent implements OnInit {
 
   selectSize(index: number) {
     this.selectedIndex = index;
+    this.selectedProduct = this.product.variety[index];
   }
 
   setTab(tab: 'description' | 'info') {
     this.activeTab = tab;
   }
-  redirectToProduct() {
-    this.router.navigate(['product'], { queryParams: { id: 0 } })
+  redirectToProduct(id: any) {
+    this.router.navigate(['product'], { queryParams: { id: id } })
   }
   getProductById() {
     let data = {
@@ -79,6 +97,51 @@ export class ProductComponent implements OnInit {
     }
     this.productService.getProductById(data).subscribe(res => {
       this.product = res.data
+    })
+  }
+  addToCart() {
+    if (this.loginService.isLoggedIn()) {
+      let data = {
+        "productId": Number(this.id),
+        "size": this.selectedProduct.size,
+        "productQty": this.quantity,
+        "quantity": this.selectedProduct.qty,
+        "unit": this.selectedProduct.unit,
+        "price": this.selectedProduct.price,
+        "amount": this.selectedProduct.price * this.quantity,
+        "variantId": this.selectedProduct.id,
+        "productName": this.product.name,
+        "variant": [this.selectedProduct]
+      }
+      this.cartService.addToCart([data]).subscribe(res => {
+        this.cartService.cartUpdateSubject.next(true)
+      })
+    }
+    else {
+      let data = {
+        "productId": Number(this.id),
+        "size": this.selectedProduct.size,
+        "productQty": this.quantity,
+        "quantity": this.selectedProduct.qty,
+        "unit": this.selectedProduct.unit,
+        "price": this.selectedProduct.price,
+        "amount": this.selectedProduct.price * this.quantity,
+        "variantId": this.selectedProduct.id,
+        "productName": this.product.name,
+        "variant": [this.selectedProduct]
+      }
+      let tempCart: any = this.storageService.getItem('cart')
+      let updatedCart = JSON.parse(tempCart)
+      updatedCart.push(data)
+      this.storageService.setItem('cart', JSON.stringify(updatedCart))
+      this.cartService.cartUpdateSubject.next(true)
+    }
+  }
+  getAllProducts() {
+    this.productService.getAllProducts().subscribe(res => {
+      this.productsList = res.data;
+      let filteredProducts = this.productsList.filter(item => item.id != this.id);
+      this.productsList = filteredProducts
     })
   }
 }

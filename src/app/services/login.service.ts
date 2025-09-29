@@ -22,4 +22,7 @@ export class LoginService {
   updateUser(data: any): Observable<any> {
     return this.http.post(`/api/User/Update`, data);
   }
+  getUserById(data: any): Observable<any> {
+    return this.http.post(`/api/User/GetById`, data);
+  }
 }

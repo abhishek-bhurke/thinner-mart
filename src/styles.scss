@@ -75,7 +75,7 @@ html {
 }
 
 .common-background-color {
-    background-color: $common-background-color;
+    background-color: #fff;
 }
 
 .common-background-color:has(app-home) {
@@ -145,4 +145,8 @@ html {
 
 ::ng-deep.toast-top-center.toast-container {
     top: 15px !important;
+}
+
+.product-list-name {
+    height: 48px !important;
 }

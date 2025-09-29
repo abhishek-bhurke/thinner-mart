@@ -3,7 +3,8 @@
         <div class="col-md-6">
             <div class="product-image-container" (mousemove)="onMouseMove($event, container)"
                 (mouseleave)="onMouseLeave()" #container>
-                <img src="../../../assets/images/top-product-1.png" class="product-page-image" [ngStyle]="{
+                <img [src]="selectedProduct ? baseUrl + '/' +selectedProduct?.image : baseUrl + '/' +product?.image"
+                    class="product-page-image" [ngStyle]="{
                     'transform-origin': transformOrigin,
                     transform: isZoomed ? 'scale(2)' : 'scale(1)'
                   }">
@@ -13,28 +14,28 @@
             </div>
         </div>
         <div class="col-md-6">
-            <div class="product-path mt-2">Home / Thinner / Royal GP THINNER</div>
-            <div class="product-name mt-2">ROYAL GP THINNER</div>
-            <div class="product-price mt-2">₹44.00 - ₹1,855.00</div>
-            <div class="product-info mt-2">A versatile solvent-based thinner for oil-based paints, varnishes, and
-                enamels.
+            <div class="product-path mt-2">Home / Thinner / {{product?.name}}</div>
+            <div class="product-name mt-2">{{product?.name}}</div>
+            <div class="product-price mt-2">{{product?.price}}</div>
+            <div class="product-info mt-2">{{product?.description}}
             </div>
             <div class="size-options-wrapper mt-2">
                 <div class="fs-6">Size Options:</div>
                 <div class="sizes mt-2">
-                    <div class="size-box" *ngFor="let size of sizes; index as i" [class.selected]="i === selectedIndex"
-                        (click)="selectSize(i)">
-                        <div class="label">{{ size.label }}</div>
-                        <div class="price">₹{{ size.price }}</div>
+                    <div class="size-box" *ngFor="let size of product?.variety; index as i"
+                        [class.selected]="i === selectedIndex" (click)="selectSize(i)">
+                        <div class="label">{{ size.size }} {{size.unit}}</div>
+                        <div class="price">₹{{ size.price | number}}</div>
                     </div>
                 </div>
             </div>
-            <div class="price-clear mt-2"><span class="text-muted kt-pointer" (click)="selectedIndex=''">CLEAR</span>
+            <div class="price-clear mt-2"><span class="text-muted kt-pointer"
+                    (click)="selectedIndex=-1;selectedProduct = ''">CLEAR</span>
             </div>
             <div class="quantity-wrapper mt-2">
                 <div class="fs-6">Quantity:</div>
                 <p-inputnumber [(ngModel)]="quantity" [showButtons]="true" buttonLayout="horizontal"
-                    inputId="horizontal" spinnerMode="horizontal" [step]="1" [max]="10" [min]="1" class="mt-2">
+                    inputId="horizontal" spinnerMode="horizontal" [step]="1" [min]="1" class="mt-2">
                     <ng-template #incrementbuttonicon>
                         <mat-icon class="text-black">add</mat-icon>
                     </ng-template>
@@ -42,9 +43,11 @@
                         <mat-icon class="text-black">remove</mat-icon>
                     </ng-template>
                 </p-inputnumber>
-                <div class="units-per-box text-muted mt-1">Units per box: 50</div>
+                <div class="units-per-box text-muted mt-1">Units per box: {{selectedProduct?.qty ?
+                    selectedProduct?.qty
+                    : 0}}</div>
             </div>
-            <div class="add-to-cart mt-3" [class.add-to-cart-disable]="selectedIndex==''">
+            <div class="add-to-cart mt-3" [class.add-to-cart-disable]="selectedIndex==-1" (click)="addToCart()">
                 Add to cart
             </div>
         </div>
@@ -55,98 +58,53 @@
                 Description
             </div>
 
-            <div class="tab" [class.active]="activeTab === 'info'" (click)="setTab('info')">
+            <!-- <div class="tab" [class.active]="activeTab === 'info'" (click)="setTab('info')">
                 Additional information
-            </div>
+            </div> -->
         </div>
 
         <div class="tab-content">
             <div *ngIf="activeTab === 'description'">
-                <p>This is the description content.</p>
+                <div class="fs-6 heading-color fw-bold">Application:</div>
+                <ol class="ps-3">
+                    <li *ngFor="let application of product?.application">{{application.description}}</li>
+                </ol>
+                <div class="fs-6 heading-color fw-bold">Key Benefits:</div>
+                <ol class="ps-3">
+                    <li *ngFor="let application of product?.benifits">{{application.description}}</li>
+                </ol>
+                <div class="fs-6 heading-color fw-bold">Application Method:</div>
+                <ol class="ps-3">
+                    <li *ngFor="let application of product?.applicationMethod">{{application.description}}</li>
+                </ol>
+                <div class="fs-6 heading-color fw-bold">Precautions:</div>
+                <ol class="ps-3">
+                    <li *ngFor="let application of product?.precautions">{{application.description}}</li>
+                </ol>
+                <div class="fs-6 heading-color fw-bold">Storage & Handling:</div>
+                <ol class="ps-3">
+                    <li *ngFor="let application of product?.storageHandelling">{{application.description}}</li>
+                </ol>
             </div>
-            <div *ngIf="activeTab === 'info'">
-                <p>This is the additional information content.</p>
-            </div>
+            <!-- <div *ngIf="activeTab === 'info'">
+                <p>Sizes : </p>
+            </div> -->
         </div>
     </div>
     <div class="row">
         <div class="heading-text text-center mt-4">Related Products</div>
         <div class="our-products-grid mt-3 px-5">
-            <div class="products-div" (click)="redirectToProduct()">
+            <div class="products-div" *ngFor="let product of productsList" (click)="redirectToProduct(product.id)">
                 <div class="text-center">
                     <div class="product-image-container">
-                        <img src="../../../assets/images/top-product-1.png" width="100%" height="100%">
+                        <img [src]="baseUrl + '/' + product.image" width="100%" height="100%">
                         <div class="icon-overlay" pTooltip="Select Options" tooltipPosition="left">
                             <mat-icon>shopping_basket</mat-icon>
                         </div>
                     </div>
-                    <div class="thinner-class mt-2">Thinner</div>
-                    <div class="fs-6 fw-bold heading-color mt-1">ROYAL GP THINNER</div>
-                    <div class="fs-6 heading-color mt-1">₹44.00 - ₹1,855.00</div>
-                    <div class="d-flex justify-content-center mt-2">
-                        <div class="select-options-button">Select Options</div>
-                    </div>
-                </div>
-            </div>
-            <div class="products-div" (click)="redirectToProduct()">
-                <div class="text-center">
-                    <div class="product-image-container">
-                        <img src="../../../assets/images/top-product-1.png" width="100%" height="100%">
-                        <div class="icon-overlay" pTooltip="Select Options" tooltipPosition="left">
-                            <mat-icon>shopping_basket</mat-icon>
-                        </div>
-                    </div>
-                    <div class="thinner-class mt-2">Thinner</div>
-                    <div class="fs-6 fw-bold heading-color mt-1">ROYAL GP THINNER</div>
-                    <div class="fs-6 heading-color mt-1">₹44.00 - ₹1,855.00</div>
-                    <div class="d-flex justify-content-center mt-2">
-                        <div class="select-options-button">Select Options</div>
-                    </div>
-                </div>
-            </div>
-            <div class="products-div" (click)="redirectToProduct()">
-                <div class="text-center">
-                    <div class="product-image-container">
-                        <img src="../../../assets/images/top-product-1.png" width="100%" height="100%">
-                        <div class="icon-overlay" pTooltip="Select Options" tooltipPosition="left">
-                            <mat-icon>shopping_basket</mat-icon>
-                        </div>
-                    </div>
-                    <div class="thinner-class mt-2">Thinner</div>
-                    <div class="fs-6 fw-bold heading-color mt-1">ROYAL GP THINNER</div>
-                    <div class="fs-6 heading-color mt-1">₹44.00 - ₹1,855.00</div>
-                    <div class="d-flex justify-content-center mt-2">
-                        <div class="select-options-button">Select Options</div>
-                    </div>
-                </div>
-            </div>
-            <div class="products-div" (click)="redirectToProduct()">
-                <div class="text-center">
-                    <div class="product-image-container">
-                        <img src="../../../assets/images/top-product-1.png" width="100%" height="100%">
-                        <div class="icon-overlay" pTooltip="Select Options" tooltipPosition="left">
-                            <mat-icon>shopping_basket</mat-icon>
-                        </div>
-                    </div>
-                    <div class="thinner-class mt-2">Thinner</div>
-                    <div class="fs-6 fw-bold heading-color mt-1">ROYAL GP THINNER</div>
-                    <div class="fs-6 heading-color mt-1">₹44.00 - ₹1,855.00</div>
-                    <div class="d-flex justify-content-center mt-2">
-                        <div class="select-options-button">Select Options</div>
-                    </div>
-                </div>
-            </div>
-            <div class="products-div" (click)="redirectToProduct()">
-                <div class="text-center">
-                    <div class="product-image-container">
-                        <img src="../../../assets/images/top-product-1.png" width="100%" height="100%">
-                        <div class="icon-overlay" pTooltip="Select Options" tooltipPosition="left">
-                            <mat-icon>shopping_basket</mat-icon>
-                        </div>
-                    </div>
-                    <div class="thinner-class mt-2">Thinner</div>
-                    <div class="fs-6 fw-bold heading-color mt-1">ROYAL GP THINNER</div>
-                    <div class="fs-6 heading-color mt-1">₹44.00 - ₹1,855.00</div>
+                    <div class="thinner-class mt-2">{{product.category}}</div>
+                    <div class="fs-6 fw-bold heading-color mt-1 product-list-name">{{product.name}}</div>
+                    <div class="fs-6 heading-color mt-1">{{product.price}}</div>
                     <div class="d-flex justify-content-center mt-2">
                         <div class="select-options-button">Select Options</div>
                     </div>

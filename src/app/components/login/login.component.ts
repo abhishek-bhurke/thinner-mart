@@ -10,6 +10,7 @@ import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private toastrService: ToastrService,
     private storageService: StorageService,
-    private router: Router) { }
+    private router: Router,
+    private cartService: CartService) { }
   ngOnInit() {
     this.createLoginForm()
   }
@@ -50,7 +52,10 @@ export class LoginComponent implements OnInit {
       this.toastrService.success(res.message)
       this.storageService.setItem('token', res.data.token);
       this.loginService.isLoggedInSubject.next(true)
-      this.matdialogRef.close();
+      let cart: any = this.storageService.getItem('cart');
+      this.cartService.addToCart(JSON.parse(cart)).subscribe(res => { })
+      this.cartService.cartUpdateSubject.next(true);
+      this.matdialogRef.close(true);
     })
   }
   signUpPage() {

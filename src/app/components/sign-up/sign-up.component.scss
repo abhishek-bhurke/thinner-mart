@@ -1,1 +1,14 @@
 @use '../../../colors.scss' as *;
+
+
+.btn-login {
+    border: 1px solid $heading-color;
+    background-color: transparent;
+    color: $heading-color;
+    padding: 10px 30px 10px 30px;
+}
+
+.btn-login:hover {
+    color: #fff;
+    background-color: $heading-color;
+}

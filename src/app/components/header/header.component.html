@@ -11,7 +11,7 @@
         </span>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-header shadow-none">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-header shadow-2">
     <a class="navbar-brand d-flex align-items-center me-0" href="#">
         <div class="logo-box text-white text-center"><img class="header-company-logo"
                 src="../../../assets/images/Thinner mart logo.jpg">
@@ -36,6 +36,10 @@
                 <a class="nav-link custom-link" [class.active]="activeSection==='products'"
                     [routerLink]="['products']">Products</a>
             </li>
+            <li class="nav-item" (click)="routeChange()" *ngIf="isLoggedIn">
+                <a class="nav-link custom-link" [class.active]="activeSection==='orders'"
+                    [routerLink]="['orders']">Orders</a>
+            </li>
             <li class="nav-item login-nav" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
                 <a class="nav-link custom-link">Login</a>
             </li>
@@ -45,14 +49,14 @@
         </ul>
     </div>
     <div class="login-button me-2">
-        <button class="btn btn-outline-primary" (click)="openLoginDialog()" *ngIf="!isLoggedIn">Login</button>
+        <button class="btn btn-login" (click)="openLoginDialog()" *ngIf="!isLoggedIn">Login</button>
         <button class="btn btn-outline-danger" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
     </div>
     <div class="header-cart" data-bs-toggle="offcanvas" data-bs-target="#shoppingcartcanvas">
-        <span class="me-2">₹ {{'0.00'}}</span>
+        <span class="me-2 header-cart-price">₹ {{totalPrice | number}}</span>
         <mat-icon>shopping_cart</mat-icon>
         <span class="position-absolute translate-middle badge rounded-pill bg-danger">
-            {{'0'}}
+            {{productQuantity}}
         </span>
     </div>
 </nav>
@@ -62,28 +66,46 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body" *ngIf="cartItems.length">
-        <div class="products-list border-bottom-1 pb-3">
-            <div class="row">
+        <div class="products-list border-bottom-1 pb-3" [ngClass]="{'pt-3':i>0}"
+            *ngFor="let product of cartItems;let i=index">
+            <div class="row" *ngFor="let variant of product.variant;">
                 <div class="col-md-4 d-flex flex-column justify-content-center align-items-center"><img
-                        src="../../../assets/images/top-product-1.png" width="80"></div>
+                        [src]="baseUrl + '/' + variant.image" width="80"></div>
                 <div class="col-md-8 d-flex flex-column justify-content-between">
-                    <div class="fw-bold">ROYAL GP THINNER - 1 Ltr</div>
-                    <div class="d-flex justify-content-between"><span>3 x
-                            ₹49.00</span><span><mat-icon class="kt-pointer">cancel</mat-icon></span></div>
+                    <div class="fw-bold">{{product.productName}} - {{product.size}} {{product.unit}}</div>
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div>Units in box : {{variant.qty}}</div>
+                            <div>Price per Unit : ₹{{variant.price}}</div>
+                            <div>Quantity : {{product.productQty}}</div>
+                            <div>Subtotal:
+                                <!-- {{variant.qty}} * {{variant.price}} * {{product.productQty}} = -->
+                                ₹{{(variant.qty * variant.price * product.productQty) | number}}
+                            </div>
+                        </div><span><mat-icon class="kt-pointer" (click)="removeFromCart(i)">cancel</mat-icon></span>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="d-flex justify-content-center p-3 subtotal border-bottom-1">
-            <h5 class="heading-color fw-bold mb-0">Subtotal : ₹527.00</h5>
+            <h5 class="heading-color fw-bold mb-0">Total : ₹ {{totalPrice | number}}</h5>
         </div>
         <div class="cart-buttons mt-3 d-flex justify-content-evenly">
             <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 me-1" (click)="viewCart()"
                 data-bs-dismiss="offcanvas">View
                 Cart</button>
-            <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 ms-1">Checkout</button>
+            <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 ms-1" (click)="redirectToCheckout()"
+                data-bs-dismiss="offcanvas">Checkout</button>
         </div>
     </div>
     <div class="offcanvas-body" *ngIf="cartItems.length==0">
-        No Products in the cart.
+        <div class="text-center">
+            <img src="../../../assets/images/empty-cart.svg" class="w-12rem">
+            <div class="fw-bold mt-2">Oops! Your cart is empty.</div>
+            <div class="d-flex justify-content-center mt-3">
+                <div class="select-options-button" (click)="goToProducts()" data-bs-dismiss="offcanvas">Explore Products
+                </div>
+            </div>
+        </div>
     </div>
 </div>

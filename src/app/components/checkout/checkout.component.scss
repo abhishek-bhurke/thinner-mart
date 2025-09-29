@@ -1,5 +1,22 @@
 @use '../../../colors.scss' as *;
 
+.cart-section {
+    padding: 0 7%;
+}
+
+.product-qty-badge {
+    top: 21%;
+    left: 19%;
+    font-size: 9px !important;
+    padding: 2px;
+    width: 20px;
+    text-align: center;
+}
+
+.checkout-product-image {
+    width: 75px;
+}
+
 ::ng-deep.accordion-button {
     color: #000 !important;
     background-color: $common-background-color !important;
@@ -26,7 +43,12 @@
     cursor: pointer;
 }
 
-.proceed-to-checkout {
+.coupon-apply-disable {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.place-order-button {
     height: 30px;
     width: 100%;
     font-size: 20px;
@@ -39,41 +61,7 @@
     cursor: pointer;
 }
 
-.coupon-apply-disable {
-    cursor: not-allowed;
+.place-order-button-disable {
     opacity: .6;
-}
-
-.cart-section {
-    padding: 0 7%;
-}
-
-::ng-deep.p-inputtext {
-    background-color: transparent !important;
-    color: #000 !important;
     pointer-events: none;
-    caret-color: transparent;
-}
-
-::ng-deep.p-inputtext:enabled:focus {
-    border-color: #52525b !important;
-}
-
-::ng-deep.p-inputnumber-button:hover {
-    background-color: transparent !important;
-}
-
-::ng-deep.p-inputnumber-input {
-    width: 55px !important;
-    text-align: center !important;
-}
-
-.select-options-button {
-    background-color: $heading-color;
-    text-align: center;
-    width: fit-content;
-    padding: 5px 10px;
-    border-radius: 50px;
-    color: #fff;
-    cursor: pointer;
 }

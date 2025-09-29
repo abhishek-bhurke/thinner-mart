@@ -3,6 +3,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-products',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ProductsComponent {
   productsList: any[] = [];
+  baseUrl = environment.API_URL;
   constructor(private router: Router, private productService: ProductService) { }
   ngOnInit() {
     this.getAllProducts();

@@ -6,6 +6,7 @@ import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
 import { TooltipModule } from 'primeng/tooltip';
 import { ProductService } from '../../services/product.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
   benefitsBanner: any;
   topProducts: any;
   productsList: any[] = [];
+  baseUrl = environment.API_URL;
   constructor(private router: Router, private productService: ProductService) { }
   ngOnInit() {
     this.responsiveOptions = [

@@ -12,6 +12,8 @@ import { catchError, finalize, Observable, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { StorageService } from '../services/storage.service';
 import { LoaderService } from '../services/loader.service';
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 export const AuthInterceptor: HttpInterceptorFn = (
   req: HttpRequest<any>,
@@ -19,6 +21,8 @@ export const AuthInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<any>> => {
   const storageService = inject(StorageService)
   const loaderService = inject(LoaderService)
+  const loginService = inject(LoginService)
+  const router = inject(Router)
   const token = storageService.getItem('token');
   loaderService.show();
   const cloned = token
@@ -27,6 +31,14 @@ export const AuthInterceptor: HttpInterceptorFn = (
 
   return next(cloned).pipe(
     catchError((error) => {
+      switch (error.status) {
+        case 401:
+          storageService.clear();
+          loginService.isLoggedInSubject.next(false);
+          router.navigate([''])
+          let emptyCart: any = []
+          storageService.setItem('cart', JSON.stringify(emptyCart))
+      }
       loaderService.hide();
       throw error
     }), finalize(() => {
