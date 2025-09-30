@@ -14,6 +14,7 @@ import { StorageService } from '../services/storage.service';
 import { LoaderService } from '../services/loader.service';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 export const AuthInterceptor: HttpInterceptorFn = (
   req: HttpRequest<any>,
@@ -22,6 +23,7 @@ export const AuthInterceptor: HttpInterceptorFn = (
   const storageService = inject(StorageService)
   const loaderService = inject(LoaderService)
   const loginService = inject(LoginService)
+  const toastrService = inject(ToastrService)
   const router = inject(Router)
   const token = storageService.getItem('token');
   loaderService.show();
@@ -38,6 +40,10 @@ export const AuthInterceptor: HttpInterceptorFn = (
           router.navigate([''])
           let emptyCart: any = []
           storageService.setItem('cart', JSON.stringify(emptyCart))
+          break;
+        case 400:
+          toastrService.error(error?.error?.errorMessage);
+          break;
       }
       loaderService.hide();
       throw error
