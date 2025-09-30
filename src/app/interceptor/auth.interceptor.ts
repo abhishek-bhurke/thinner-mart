@@ -44,6 +44,9 @@ export const AuthInterceptor: HttpInterceptorFn = (
         case 400:
           toastrService.error(error?.error?.errorMessage);
           break;
+        case 500:
+          toastrService.error(error?.error?.errorMessage);
+          break;
       }
       loaderService.hide();
       throw error

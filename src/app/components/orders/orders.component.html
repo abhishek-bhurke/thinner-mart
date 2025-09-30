@@ -4,7 +4,7 @@
         <div *ngFor="let order of ordersList;let i = index;" class="py-3 border-bottom-1 order-container kt-pointer"
             (click)="gotToOrderDetails(order.id)">
             <div class="row mb-3 gy-3">
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center align-content-center">
                     <p-carousel [value]="order.orderItems" [numVisible]="2" [numScroll]="2" [circular]="false"
                         (click)="$event.stopPropagation()" *ngIf="order.orderItems.length>1;else showSingleImage"
                         [autoplayInterval]="0" [showNavigators]="true" [showIndicators]="false">
@@ -20,7 +20,9 @@
                     </ng-template>
                 </div>
                 <div class="col-md-4 align-content-center order-data-container">
-                    <div>Order placed on {{order.orderDate}}</div>
+                    <div *ngFor="let product of order.orderItems">{{product.productName}} | {{product.size}}
+                        {{product.unit}}</div>
+                    <div>Order placed: {{order.orderDate}}</div>
                     <div class="mt-1">
                         <div>Order Status:
                             <span *ngIf="order.orderStatus=='Processing'"

@@ -40,17 +40,18 @@
                     <div class="row mt-2"
                         *ngFor="let product of orderData?.orderItems; let i = index; let isLast = last;"
                         [ngClass]="{'border-dotted border-left-none border-right-none border-top-none pb-2':isLast}">
-                        <div class="col-md-8">
+                        <div class="col-md-6 w-50">
                             <div>{{product.productName}}</div>
                         </div>
-                        <div class="col-md-4">₹{{(product.quantity * product.price * product.productQty) | number}}
+                        <div class="col-md-6 w-50 text-end">₹{{(product.quantity * product.price * product.productQty) |
+                            number}}
                         </div>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-8">
+                        <div class="col-md-6 w-50">
                             <h4 class="heading-color fw-bold">Total</h4>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 w-50 text-end">
                             <h4 class="heading-color fw-bold"> ₹{{totalPrice | number}}</h4>
                         </div>
                     </div>
