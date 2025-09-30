@@ -157,7 +157,8 @@ export class CheckoutComponent {
       "lastName": this.checkoutForm.controls['lastName'].value,
       "country": this.checkoutForm.controls['country'].value,
       "advanceAmount": this.advancedAmount,
-      "isAdvance": isAdvance ? true : false
+      "isAdvance": isAdvance ? true : false,
+      "gstNumber": this.checkoutForm.controls['gstNumber'].value ? this.checkoutForm.controls['gstNumber'].value : ''
     }
     this.orderService.addOrder(data).subscribe(res => {
       if (data.method == 'online' || isAdvance) {

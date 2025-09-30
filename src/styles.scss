@@ -154,3 +154,7 @@ html {
 ::ng-deep.cdk-global-scrollblock {
     overflow: visible !important;
 }
+
+.cdk-global-scrollblock {
+    overflow-y: unset !important;
+}
