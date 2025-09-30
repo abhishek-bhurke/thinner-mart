@@ -20,8 +20,11 @@
                     </ng-template>
                 </div>
                 <div class="col-md-4 align-content-center order-data-container">
-                    <div *ngFor="let product of order.orderItems">{{product.productName}} | {{product.size}}
-                        {{product.unit}}</div>
+                    <div *ngFor="let product of order.orderItems">
+                        <span *ngIf="order.orderItems.length==1">{{product.productName}} | {{product.size}}
+                            {{product.unit}}
+                        </span>
+                    </div>
                     <div>Order placed: {{order.orderDate}}</div>
                     <div class="mt-1">
                         <div>Order Status:

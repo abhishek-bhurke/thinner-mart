@@ -53,7 +53,7 @@
         <button class="btn btn-outline-danger" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
     </div>
     <div class="header-cart" data-bs-toggle="offcanvas" data-bs-target="#shoppingcartcanvas">
-        <span class="me-2 header-cart-price">₹ {{totalPrice | number}}</span>
+        <span class="me-2 header-cart-price">₹{{totalPrice | number}}</span>
         <mat-icon>shopping_cart</mat-icon>
         <span class="position-absolute translate-middle badge rounded-pill bg-danger">
             {{productQuantity}}
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center p-3 subtotal border-bottom-1">
-            <h5 class="heading-color fw-bold mb-0">Total : ₹ {{totalPrice | number}}</h5>
+            <h5 class="heading-color fw-bold mb-0">Total : ₹{{totalPrice | number}}</h5>
         </div>
         <div class="cart-buttons mt-3 d-flex justify-content-evenly">
             <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 me-1" (click)="viewCart()"

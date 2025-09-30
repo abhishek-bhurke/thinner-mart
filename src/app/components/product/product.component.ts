@@ -13,6 +13,7 @@ import { CartService } from '../../services/cart.service';
 import { LoginService } from '../../services/login.service';
 import { StorageService } from '../../services/storage.service';
 import { environment } from '../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
@@ -46,7 +47,8 @@ export class ProductComponent implements OnInit {
     private productService: ProductService,
     private cartService: CartService,
     private loginService: LoginService,
-    private storageService: StorageService) { }
+    private storageService: StorageService,
+    private toastrService: ToastrService) { }
   ngOnInit() {
     // this.id = this.route.snapshot.queryParamMap.get('id');
     this.route.queryParamMap.subscribe(params => {
@@ -83,6 +85,7 @@ export class ProductComponent implements OnInit {
   selectSize(index: number) {
     this.selectedIndex = index;
     this.selectedProduct = this.product.variety[index];
+    this.quantity = 1;
   }
 
   setTab(tab: 'description' | 'info') {
@@ -115,6 +118,8 @@ export class ProductComponent implements OnInit {
       }
       this.cartService.addToCart([data]).subscribe(res => {
         this.cartService.cartUpdateSubject.next(true)
+        this.toastrService.success(res.message);
+        this.quantity = 1
       })
     }
     else {
@@ -135,6 +140,8 @@ export class ProductComponent implements OnInit {
       updatedCart.push(data)
       this.storageService.setItem('cart', JSON.stringify(updatedCart))
       this.cartService.cartUpdateSubject.next(true)
+      this.toastrService.success('Successfully added products to cart.');
+      this.quantity = 1;
     }
   }
   getAllProducts() {

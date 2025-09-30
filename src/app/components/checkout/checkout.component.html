@@ -66,16 +66,16 @@
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
-                        <mat-checkbox class="example-margin" formControlName="isGST"
-                            (change)="isGstRequired($event)">GST Invoice</mat-checkbox>
-                        <div *ngIf="checkoutForm.controls['isGST'].value">
-                            <mat-form-field class="w-100" appearance="outline">
-                                <mat-label>GST Number</mat-label>
-                                <input matInput placeholder="GST Number" formControlName="gstNumber">
+                        <mat-checkbox class="example-margin" formControlName="addNote">Add a note to your
+                            order</mat-checkbox>
+                        <div *ngIf="checkoutForm.controls['addNote'].value">
+                            <mat-form-field class="w-100">
+                                <mat-label>Notes about your order</mat-label>
+                                <textarea matInput cdkTextareaAutosize formControlName="note"></textarea>
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-12 mt-3">
                         <div class="fs-5">Payment Options
                         </div>
                         <!-- {{checkoutForm.value | json}} -->
@@ -89,12 +89,12 @@
                         </mat-radio-group>
                     </div>
                     <div class="col-md-12">
-                        <mat-checkbox class="example-margin" formControlName="addNote">Add a note to your
-                            order</mat-checkbox>
-                        <div *ngIf="checkoutForm.controls['addNote'].value">
-                            <mat-form-field class="w-100">
-                                <mat-label>Notes about your order</mat-label>
-                                <textarea matInput cdkTextareaAutosize formControlName="note"></textarea>
+                        <mat-checkbox class="example-margin" formControlName="isGST"
+                            (change)="isGstRequired($event)">GST Invoice</mat-checkbox>
+                        <div *ngIf="checkoutForm.controls['isGST'].value">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>GST Number</mat-label>
+                                <input matInput placeholder="GST Number" formControlName="gstNumber">
                             </mat-form-field>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-bottom-1 border-top-1">
+                    <div class="border-bottom-1 border-top-1 d-none">
                         <div class="accordion" id="couponAccordionMain">
                             <div class="accordion-item border-0">
                                 <h2 class="accordion-header" id="headingTwo">
@@ -165,7 +165,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="border-bottom-1">
+                    <div class="border-bottom-1 border-top-1">
                         <div class="d-flex fs-4 justify-content-between py-2">
                             <div>Subtotal</div>
                             <div>₹{{subTotal | number}}</div>

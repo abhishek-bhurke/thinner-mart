@@ -16,7 +16,7 @@
         <div class="col-md-6">
             <div class="product-path mt-2">Home / Thinner / {{product?.name}}</div>
             <div class="product-name mt-2">{{product?.name}}</div>
-            <div class="product-price mt-2">{{product?.price}}</div>
+            <div class="product-price mt-2">{{selectedProduct ? '₹'+selectedProduct?.price : product?.price}}</div>
             <div class="product-info mt-2">{{product?.description}}
             </div>
             <div class="size-options-wrapper mt-2">

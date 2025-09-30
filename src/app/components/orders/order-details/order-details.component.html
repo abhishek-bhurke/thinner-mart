@@ -9,7 +9,7 @@
                         <div class="fw-bold">{{product.productName}}</div>
                         <div class="mt-1">Units in box: {{product.quantity}}</div>
                         <div class="mt-1">Price per Unit: ₹{{product.price}}</div>
-                        <div class="mt-1">Quantity: ₹{{product.productQty}}</div>
+                        <div class="mt-1">Quantity: {{product.productQty}}</div>
                     </div>
                     <div class="align-content-center col-md-4 fw-bold">
                         Subtotal: ₹{{(product.quantity * product.price * product.productQty) | number}}

@@ -40,6 +40,7 @@ export const AuthInterceptor: HttpInterceptorFn = (
           router.navigate([''])
           let emptyCart: any = []
           storageService.setItem('cart', JSON.stringify(emptyCart))
+          toastrService.error('Session timeout.');
           break;
         case 400:
           toastrService.error(error?.error?.errorMessage);
