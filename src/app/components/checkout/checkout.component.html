@@ -66,6 +66,16 @@
                         </mat-form-field>
                     </div>
                     <div class="col-md-12">
+                        <mat-checkbox class="example-margin" formControlName="isGST"
+                            (change)="isGstRequired($event)">GST Invoice</mat-checkbox>
+                        <div *ngIf="checkoutForm.controls['isGST'].value">
+                            <mat-form-field class="w-100" appearance="outline">
+                                <mat-label>GST Number</mat-label>
+                                <input matInput placeholder="GST Number" formControlName="gstNumber">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="fs-5">Payment Options
                         </div>
                         <!-- {{checkoutForm.value | json}} -->

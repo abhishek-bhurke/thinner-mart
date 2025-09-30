@@ -4,10 +4,11 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-products',
-  imports: [MatIconModule, CommonModule],
+  imports: [MatIconModule, CommonModule, TooltipModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

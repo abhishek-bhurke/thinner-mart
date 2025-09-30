@@ -4,10 +4,13 @@ import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
+import { CarouselModule } from "primeng/carousel";
+import { TooltipModule } from 'primeng/tooltip';
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule],
+  imports: [CommonModule, CarouselModule, TooltipModule, MatIconModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })
@@ -27,5 +30,8 @@ export class OrdersComponent {
   }
   goToProducts() {
     this.router.navigate(['products']);
+  }
+  gotToOrderDetails(id: any) {
+    this.router.navigate(['order-details'], { queryParams: { id: id } })
   }
 }

@@ -4,8 +4,12 @@
     padding: 0 7%;
 }
 
-.orders-image {
-    width: 40%;
+.orders-image-1 {
+    width: 80%;
+}
+
+.orders-image-2 {
+    width: 33%;
 }
 
 .select-options-button {
@@ -16,4 +20,10 @@
     border-radius: 50px;
     color: #fff;
     cursor: pointer;
+}
+
+@media (max-width:767px) {
+    .order-data-container {
+        padding-left: 20%;
+    }
 }

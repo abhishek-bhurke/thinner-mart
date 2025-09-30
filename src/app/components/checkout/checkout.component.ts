@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from "@angular/material/icon";
 import { Router } from '@angular/router';
 import { MatRadioModule } from '@angular/material/radio';
@@ -74,8 +74,24 @@ export class CheckoutComponent {
       'mobile': ['', Validators.required],
       'note': [''],
       'paymentMode': ['', Validators.required],
-      'addNote': [false]
+      'addNote': [false],
+      'isGST': [false],
+      'gstNumber': ['']
     })
+  }
+  isGstRequired(event: MatCheckboxChange) {
+    if (event.checked) {
+      this.checkoutForm.controls['gstNumber'].setValue('')
+      this.checkoutForm.controls['gstNumber'].addValidators(Validators.required);
+      this.checkoutForm.controls['gstNumber'].updateValueAndValidity();
+      this.checkoutForm.updateValueAndValidity();
+    }
+    else {
+      this.checkoutForm.controls['gstNumber'].setValue('')
+      this.checkoutForm.controls['gstNumber'].removeValidators(Validators.required);
+      this.checkoutForm.controls['gstNumber'].updateValueAndValidity();
+      this.checkoutForm.updateValueAndValidity();
+    }
   }
   placeOrder() {
     if (this.productList.length == 1 && this.productList[0].categoryName == 'Sample') {

@@ -1,17 +1,54 @@
 <div class="orders-section">
     <div class="heading-text mt-4">Orders</div>
     <div *ngIf="ordersList.length">
-        <div *ngFor="let order of ordersList;let i = index;" class="py-3 border-bottom-1">
-            <div class="row mb-3" *ngFor="let product of order.orderItems">
-                <div class="col-md-4 text-center"><img class="orders-image" [src]="baseUrl+'/'+product.image"></div>
-                <div class="col-md-4">
-                    <div class="fs-5 heading-color">{{product.productName}}</div>
+        <div *ngFor="let order of ordersList;let i = index;" class="py-3 border-bottom-1 order-container kt-pointer"
+            (click)="gotToOrderDetails(order.id)">
+            <div class="row mb-3 gy-3">
+                <div class="col-md-4 text-center">
+                    <p-carousel [value]="order.orderItems" [numVisible]="2" [numScroll]="2" [circular]="false"
+                        (click)="$event.stopPropagation()" *ngIf="order.orderItems.length>1;else showSingleImage"
+                        [autoplayInterval]="0" [showNavigators]="true" [showIndicators]="false">
+                        <ng-template let-product #item>
+                            <img class="orders-image-1" [src]="baseUrl+'/'+product.image"
+                                pTooltip="{{product.productName}}" tooltipPosition="right">
+                        </ng-template>
+                    </p-carousel>
+                    <ng-template #showSingleImage>
+                        <img *ngFor="let product of order.orderItems" class="orders-image-2"
+                            [src]="baseUrl+'/'+product.image" pTooltip="{{product.productName}}"
+                            tooltipPosition="right">
+                    </ng-template>
+                </div>
+                <div class="col-md-4 align-content-center order-data-container">
+                    <div>Order placed on {{order.orderDate}}</div>
+                    <div class="mt-1">
+                        <div>Order Status:
+                            <span *ngIf="order.orderStatus=='Processing'"
+                                class="text-warning">{{order.orderStatus}}</span>
+                            <span *ngIf="order.orderStatus=='Shipped'"
+                                class="text-secondary">{{order.orderStatus}}</span>
+                            <span *ngIf="order.orderStatus=='Delivered'"
+                                class="text-success">{{order.orderStatus}}</span>
+                        </div>
+                    </div>
+                    <div class="mt-1">
+                        <div>Payment Status:
+                            <span *ngIf="order.paymentStatus=='Pending'"
+                                class="text-warning">{{order.paymentStatus}}</span>
+                            <span *ngIf="order.paymentStatus=='Completed'"
+                                class="text-success">{{order.paymentStatus}}</span>
+                            <span *ngIf="order.paymentStatus=='Failed'"
+                                class="text-danger">{{order.paymentStatus}}</span>
+                        </div>
+                    </div>
+                    <!-- <div class="fs-5 heading-color">{{product.productName}}</div>
                     <div class="mt-1">₹{{product.price | number}}</div>
                     <div class="mt-1">Size: {{product.size}} {{product.unit}}</div>
-                    <div class="mt-1">Quantity: {{product.productQty}}</div>
+                    <div class="mt-1">Quantity: {{product.productQty}}</div> -->
                 </div>
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center d-flex justify-content-around align-items-center">
                     <span class="fs-4">₹{{order.totalAmount | number}}</span>
+                    <mat-icon>keyboard_arrow_right</mat-icon>
                 </div>
             </div>
         </div>

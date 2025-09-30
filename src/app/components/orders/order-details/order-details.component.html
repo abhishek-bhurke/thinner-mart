@@ -1,1 +1,75 @@
-<p>order-details works!</p>
+<div class="order-details-section">
+    <div class="heading-text mt-4">Order Details</div>
+    <div class="row mt-0 gy-4">
+        <div class="col-md-8">
+            <div *ngFor="let product of orderData.orderItems; let i = index">
+                <div class="row border-bottom-1" [ngClass]="{'py-4':i!=0,'pb-4':i==0}">
+                    <div class="col-md-4"><img class="order-details-image" [src]="baseUrl+'/'+product.image"></div>
+                    <div class="col-md-4">
+                        <div class="fw-bold">{{product.productName}}</div>
+                        <div class="mt-1">Units in box: {{product.quantity}}</div>
+                        <div class="mt-1">Price per Unit: ₹{{product.price}}</div>
+                        <div class="mt-1">Quantity: ₹{{product.productQty}}</div>
+                    </div>
+                    <div class="align-content-center col-md-4 fw-bold">
+                        Subtotal: ₹{{(product.quantity * product.price * product.productQty) | number}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="fw-bold">Delivery Details</div>
+                    <div class="mt-1">Delivery Address: {{orderData.address1 +' '+orderData.address2}}</div>
+                    <!-- <div class="mt-1">Name: {{orderData.firstName +' '+orderData.lastName}}</div> -->
+                    <div class="mt-1">Email ID: {{orderData.email}}</div>
+                    <div class="mt-1">Mobile Number: {{orderData.mobile}}</div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="fw-bold">Order Summary</div>
+                    <div class="row mt-2"
+                        *ngFor="let product of orderData.orderItems; let i = index; let isLast = last;"
+                        [ngClass]="{'border-dotted border-left-none border-right-none border-top-none pb-2':isLast}">
+                        <div class="col-md-8">
+                            <div>{{product.productName}}</div>
+                        </div>
+                        <div class="col-md-4">₹{{(product.quantity * product.price * product.productQty) | number}}
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-8">
+                            <h4 class="heading-color fw-bold">Total</h4>
+                        </div>
+                        <div class="col-md-4">
+                            <h4 class="heading-color fw-bold"> ₹{{totalPrice | number}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="fw-bold">Payment and Order Status</div>
+                    <div>Payment Status:
+                        <span *ngIf="orderData.paymentStatus=='Pending'"
+                            class="text-warning">{{orderData.paymentStatus}}</span>
+                        <span *ngIf="orderData.paymentStatus=='Completed'"
+                            class="text-success">{{orderData.paymentStatus}}</span>
+                        <span *ngIf="orderData.paymentStatus=='Failed'"
+                            class="text-danger">{{orderData.paymentStatus}}</span>
+                    </div>
+                    <div>Order Status:
+                        <span *ngIf="orderData.orderStatus=='Processing'"
+                            class="text-warning">{{orderData.orderStatus}}</span>
+                        <span *ngIf="orderData.orderStatus=='Shipped'"
+                            class="text-secondary">{{orderData.orderStatus}}</span>
+                        <span *ngIf="orderData.orderStatus=='Delivered'"
+                            class="text-success">{{orderData.orderStatus}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
