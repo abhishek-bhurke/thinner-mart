@@ -12,3 +12,7 @@
     color: #fff;
     background-color: $heading-color;
 }
+
+::ng-deep .cdk-overlay-container {
+    z-index: 1030 !important
+}

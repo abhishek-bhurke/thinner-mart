@@ -60,8 +60,9 @@ export class LoginComponent implements OnInit {
   }
   signUpPage() {
     let dialogRef = this.matdialog.open(SignUpComponent, {
-      height: 'auto',
       width: 'auto',
+      height: 'auto',
+      maxHeight: '90vh',
       disableClose: true,
       panelClass: 'signup-dialog-container',
       // backdropClass: 'glass-backdrop',
