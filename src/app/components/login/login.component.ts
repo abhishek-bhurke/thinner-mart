@@ -52,6 +52,9 @@ export class LoginComponent implements OnInit {
       this.toastrService.success(res.message)
       this.storageService.setItem('token', res.data.token);
       this.loginService.isLoggedInSubject.next(true)
+      this.loginService.getUserById({ id: 0 }).subscribe(res => {
+        this.storageService.setItem('userData', JSON.stringify(res.data));
+      })
       let cart: any = this.storageService.getItem('cart');
       this.cartService.addToCart(JSON.parse(cart)).subscribe(res => { })
       this.cartService.cartUpdateSubject.next(true);

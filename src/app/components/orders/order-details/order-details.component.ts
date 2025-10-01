@@ -3,11 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { OrderService } from '../../../services/order.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../../environments/environment';
-import { Timeline } from 'primeng/timeline';
+import { AdminService } from '../../../services/admin.service';
+import { StorageService } from '../../../services/storage.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-order-details',
-  imports: [CommonModule, Timeline],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.scss'
 })
@@ -16,12 +19,21 @@ export class OrderDetailsComponent implements OnInit {
   orderData: any;
   baseUrl = environment.API_URL;
   totalPrice: number = 0;
-  constructor(private route: ActivatedRoute, private orderService: OrderService) { }
+  userData: any;
+  constructor(private route: ActivatedRoute, private orderService: OrderService,
+    private adminService: AdminService, private storageService: StorageService,
+    private toastrService: ToastrService) { }
   ngOnInit() {
     this.route.queryParamMap.subscribe(params => {
       this.id = params.get('id');
       if (this.id) {
-        this.getOrderById();
+        let data: any = this.storageService.getItem('userData');
+        this.userData = JSON.parse(data);
+        if (this.userData.isAdmin) {
+          this.getAdminOrderById();
+        }
+        else
+          this.getOrderById();
       }
     })
   }
@@ -37,6 +49,31 @@ export class OrderDetailsComponent implements OnInit {
         productprice += ele.quantity * ele.price;
         this.totalPrice += ele.productQty * productprice;
       })
+    })
+  }
+  getAdminOrderById() {
+    let data = {
+      id: Number(this.id)
+    }
+    this.adminService.getAdminOrderById(data).subscribe(res => {
+      this.orderData = res.data;
+      this.totalPrice = 0;
+      this.orderData.orderItems.forEach((ele: any) => {
+        let productprice = 0
+        productprice += ele.quantity * ele.price;
+        this.totalPrice += ele.productQty * productprice;
+      })
+    })
+  }
+  changeOrderStatus() {
+    let data = {
+      "id": Number(this.id),
+      "orderStatus": this.orderData.orderStatus,
+      "paymentStatus": this.orderData.paymentStatus
+    }
+    this.adminService.updateOrderStatus(data).subscribe(res => {
+      this.toastrService.success(res.message);
+      this.getAdminOrderById();
     })
   }
 }

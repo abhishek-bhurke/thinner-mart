@@ -1,5 +1,5 @@
 export const environment = {
     production: false,
-    API_URL: 'https://1135366beb23.ngrok-free.app',
+    API_URL: 'https://tnmapi.techket.shop',
     razorPay_key: 'rzp_test_RLpSbOvcIsoP5h'
 };

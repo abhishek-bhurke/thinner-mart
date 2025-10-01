@@ -61,20 +61,36 @@
                 <div class="card-body">
                     <div class="fw-bold">Payment and Order Status</div>
                     <div>Payment Status:
-                        <span *ngIf="orderData?.paymentStatus=='Pending'"
-                            class="text-warning">{{orderData.paymentStatus}}</span>
-                        <span *ngIf="orderData?.paymentStatus=='Completed'"
-                            class="text-success">{{orderData.paymentStatus}}</span>
-                        <span *ngIf="orderData?.paymentStatus=='Failed'"
-                            class="text-danger">{{orderData.paymentStatus}}</span>
+                        <select [(ngModel)]="orderData.paymentStatus" (ngModelChange)="changeOrderStatus()"
+                            *ngIf="userData.isAdmin">
+                            <option value="Pending">Pending</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Failed">Failed</option>
+                        </select>
+                        <span *ngIf="!userData.isAdmin">
+                            <span *ngIf="orderData?.paymentStatus=='Pending'"
+                                class="text-warning">{{orderData.paymentStatus}}</span>
+                            <span *ngIf="orderData?.paymentStatus=='Completed'"
+                                class="text-success">{{orderData.paymentStatus}}</span>
+                            <span *ngIf="orderData?.paymentStatus=='Failed'"
+                                class="text-danger">{{orderData.paymentStatus}}</span>
+                        </span>
                     </div>
                     <div>Order Status:
-                        <span *ngIf="orderData?.orderStatus=='Processing'"
-                            class="text-warning">{{orderData.orderStatus}}</span>
-                        <span *ngIf="orderData?.orderStatus=='Shipped'"
-                            class="text-secondary">{{orderData.orderStatus}}</span>
-                        <span *ngIf="orderData?.orderStatus=='Delivered'"
-                            class="text-success">{{orderData.orderStatus}}</span>
+                        <select [(ngModel)]="orderData.orderStatus" (ngModelChange)="changeOrderStatus()"
+                            *ngIf="userData.isAdmin">
+                            <option value="Processing">Processing</option>
+                            <option value="Shipped">Shipped</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                        <span *ngIf="!userData.isAdmin">
+                            <span *ngIf="orderData?.orderStatus=='Processing'"
+                                class="text-warning">{{orderData.orderStatus}}</span>
+                            <span *ngIf="orderData?.orderStatus=='Shipped'"
+                                class="text-secondary">{{orderData.orderStatus}}</span>
+                            <span *ngIf="orderData?.orderStatus=='Delivered'"
+                                class="text-success">{{orderData.orderStatus}}</span>
+                        </span>
                     </div>
                 </div>
             </div>

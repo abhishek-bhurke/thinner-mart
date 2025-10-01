@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { CarouselModule } from "primeng/carousel";
 import { TooltipModule } from 'primeng/tooltip';
 import { MatIconModule } from "@angular/material/icon";
+import { StorageService } from '../../services/storage.service';
+import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-orders',
@@ -17,14 +19,27 @@ import { MatIconModule } from "@angular/material/icon";
 export class OrdersComponent {
   ordersList: any[] = [];
   baseUrl = environment.API_URL;
-  constructor(private orderService: OrderService, private cartService: CartService, private router: Router) {
+  constructor(private orderService: OrderService, private cartService: CartService, private router: Router,
+    private storageService: StorageService, private adminService: AdminService) {
     this.cartService.cartUpdateSubject.next(true)
   }
   ngOnInit() {
-    this.getAllOrders();
+    let data: any = this.storageService.getItem('userData');
+    let userData = JSON.parse(data);
+    if (userData.isAdmin) {
+      this.getAdminOrders();
+    }
+    else {
+      this.getAllOrders();
+    }
   }
   getAllOrders() {
     this.orderService.getAllOrders().subscribe(res => {
+      this.ordersList = res.data;
+    })
+  }
+  getAdminOrders() {
+    this.adminService.getAllAdminOrders().subscribe(res => {
       this.ordersList = res.data;
     })
   }
