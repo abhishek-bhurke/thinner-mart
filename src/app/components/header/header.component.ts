@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   totalPrice: number = 0;
   productQuantity: number = 0;
   baseUrl = environment.API_URL;
+  whatsappNumber = 8452006089;
   constructor(private eRef: ElementRef,
     private router: Router,
     private dialog: MatDialog,
@@ -173,5 +174,13 @@ export class HeaderComponent implements OnInit {
   }
   goToProducts() {
     this.router.navigate(['products']);
+  }
+  redirectToWhatsapp() {
+    const url = `whatsapp://send?phone=${this.whatsappNumber}`;
+    window.open(url, '_blank');
+  }
+  redirectToFacebook() {
+    const url = 'https://www.facebook.com/share/17F7i39mPY/';
+    window.open(url, '_blank')
   }
 }

@@ -48,17 +48,22 @@ export class CheckoutComponent {
   }
   getCart() {
     this.cartService.getAllCart().subscribe(res => {
-      this.productList = res.data;
-      this.subTotal = 0;
-      this.total = 0;
-      this.productList.forEach((ele: any) => {
-        let productprice = 0;
-        ele.variant?.forEach((ele1: any) => {
-          productprice += ele1.qty * ele1.price;
+      if (res.data.length) {
+        this.productList = res.data;
+        this.subTotal = 0;
+        this.total = 0;
+        this.productList.forEach((ele: any) => {
+          let productprice = 0;
+          ele.variant?.forEach((ele1: any) => {
+            productprice += ele1.qty * ele1.price;
+          })
+          this.subTotal += ele.productQty * productprice;
+          this.total += ele.productQty * productprice;
         })
-        this.subTotal += ele.productQty * productprice;
-        this.total += ele.productQty * productprice;
-      })
+      }
+      else {
+        this.router.navigate([''])
+      }
     })
   }
   createCheckoutForm() {
