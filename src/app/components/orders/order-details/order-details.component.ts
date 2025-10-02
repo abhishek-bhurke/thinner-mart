@@ -7,10 +7,11 @@ import { AdminService } from '../../../services/admin.service';
 import { StorageService } from '../../../services/storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-order-details',
-  imports: [CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule],
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.scss'
 })
@@ -75,5 +76,13 @@ export class OrderDetailsComponent implements OnInit {
       this.toastrService.success(res.message);
       this.getAdminOrderById();
     })
+  }
+  redirectToWhatsapp() {
+    const url = `whatsapp://send?phone=${this.orderData?.mobile}`;
+    window.open(url, '_blank');
+  }
+  redirectToMail() {
+    const url = `mailto:${this.orderData?.email}`;
+    window.open(url, '_blank');
   }
 }

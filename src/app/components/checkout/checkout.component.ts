@@ -16,11 +16,12 @@ import { PaymentService } from '../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AdvanceAmountConfirmationComponent } from './advance-amount-confirmation/advance-amount-confirmation.component';
+import { TooltipModule } from 'primeng/tooltip';
 declare var Razorpay: any;
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatRadioModule, MatDialogModule],
+  imports: [CommonModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatRadioModule, MatDialogModule, TooltipModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })
@@ -32,6 +33,9 @@ export class CheckoutComponent {
   total: number = 0;
   checkoutForm!: FormGroup;
   advancedAmount: number = 0;
+  discountedTotal: number = 0;
+  priceBeforeDiscount: number = 0;
+  userId: any;
   constructor(private storageService: StorageService,
     private loginService: LoginService,
     private cartService: CartService,
@@ -44,7 +48,9 @@ export class CheckoutComponent {
   ngOnInit() {
     this.getCart();
     this.createCheckoutForm();
-    this.getUserDetails()
+    this.getUserDetails();
+    let userData: any = this.storageService.getItem('userData');
+    this.userId = JSON.parse(userData)
   }
   getCart() {
     this.cartService.getAllCart().subscribe(res => {
@@ -52,6 +58,7 @@ export class CheckoutComponent {
         this.productList = res.data;
         this.subTotal = 0;
         this.total = 0;
+        this.priceBeforeDiscount = 0;
         this.productList.forEach((ele: any) => {
           let productprice = 0;
           ele.variant?.forEach((ele1: any) => {
@@ -59,6 +66,7 @@ export class CheckoutComponent {
           })
           this.subTotal += ele.productQty * productprice;
           this.total += ele.productQty * productprice;
+          this.priceBeforeDiscount += ele.productQty * productprice;
         })
       }
       else {
@@ -163,7 +171,10 @@ export class CheckoutComponent {
       "country": this.checkoutForm.controls['country'].value,
       "advanceAmount": this.advancedAmount,
       "isAdvance": isAdvance ? true : false,
-      "gstNumber": this.checkoutForm.controls['gstNumber'].value ? this.checkoutForm.controls['gstNumber'].value : ''
+      "gstNumber": this.checkoutForm.controls['gstNumber'].value ? this.checkoutForm.controls['gstNumber'].value : '',
+      "totalBeforeDiscount": this.priceBeforeDiscount,
+      "couponCode": this.couponCode,
+      "discountAmount": this.discountedTotal
     }
     this.orderService.addOrder(data).subscribe(res => {
       if (data.method == 'online' || isAdvance) {
@@ -172,7 +183,7 @@ export class CheckoutComponent {
           "key": environment.razorPay_key,
           "amount": resData.Attributes.amount,
           "currency": resData.Attributes.currency,
-          "name": "My Shop",
+          "name": "Thinner Mart",
           "description": "Test Transaction",
           "order_id": resData.Attributes.id,
           "handler": (res: any) => {
@@ -219,5 +230,30 @@ export class CheckoutComponent {
       this.checkoutForm.controls['postalCode'].setValue(res.data.pincode)
       this.checkoutForm.controls['mobile'].setValue(res.data.mobileNumber)
     })
+  }
+  applyCoupon() {
+    let data = {
+      code: this.couponCode,
+      id: Number(this.userId.id)
+    }
+    this.orderService.verifyCoupon(data).subscribe((res: any) => {
+      if (res?.data) {
+        if (this.total >= res.data?.minimumAmount) {
+          this.discountedTotal = (this.total * res.data?.percentage) / 100;
+          let newTotal = this.total - this.discountedTotal;
+          this.priceBeforeDiscount = this.total;
+          this.total = newTotal;
+          this.toastrService.success(`Coupon applied successfully.`)
+        }
+        else {
+          this.toastrService.error(`Coupon is valid only above ₹${res.data?.minimumAmount} amount.`)
+        }
+      }
+    })
+  }
+  removeCoupon() {
+    this.discountedTotal = 0;
+    this.couponCode = '';
+    this.getCart();
   }
 }

@@ -16,16 +16,19 @@
                                 <div class="fs-5 heading-color">{{product.productName}}</div>
                                 <div class="mt-1">₹{{variant.price | number}}</div>
                                 <div class="mt-1">Size: {{variant.size}} {{variant.unit}}</div>
-                                <div class="mt-1"><p-inputnumber [showButtons]="true" buttonLayout="horizontal"
-                                        [(ngModel)]="product.productQty" inputId="horizontal" spinnerMode="horizontal"
-                                        (ngModelChange)="updateCart(i,j)" [step]="1" [min]="1" class="mt-2">
+                                <div class="mt-1">
+                                    <p-inputnumber [showButtons]="true" buttonLayout="horizontal"
+                                        [disabled]="product.categoryName=='Sample'" [(ngModel)]="product.productQty"
+                                        inputId="horizontal" spinnerMode="horizontal" (ngModelChange)="updateCart(i,j)"
+                                        [step]="1" [min]="1" class="mt-2">
                                         <ng-template #incrementbuttonicon>
                                             <mat-icon class="text-black">add</mat-icon>
                                         </ng-template>
                                         <ng-template #decrementbuttonicon>
                                             <mat-icon class="text-black">remove</mat-icon>
                                         </ng-template>
-                                    </p-inputnumber></div>
+                                    </p-inputnumber>
+                                </div>
                                 <div class="mt-1"><span class="heading-color underline kt-pointer"
                                         (click)="removeItem(i)">Remove item</span>
                                 </div>

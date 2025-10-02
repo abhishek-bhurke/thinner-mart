@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { Observable } from 'rxjs';
@@ -23,5 +23,8 @@ export class OrderService {
   }
   deleteOrder(data: any): Observable<any> {
     return this.http.post(`/api/Order/Delete`, data);
+  }
+  verifyCoupon(data: any) {
+    return this.http.post(`/api/Coupon/ValidateCoupon`, '', { params: { code: data.code, userId: data.id } });
   }
 }

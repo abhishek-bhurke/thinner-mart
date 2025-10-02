@@ -35,7 +35,8 @@
             <div class="quantity-wrapper mt-2">
                 <div class="fs-6">Quantity:</div>
                 <p-inputnumber [(ngModel)]="quantity" [showButtons]="true" buttonLayout="horizontal"
-                    inputId="horizontal" spinnerMode="horizontal" [step]="1" [min]="1" class="mt-2">
+                    [disabled]="product.category=='Sample'" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                    [min]="1" class="mt-2">
                     <ng-template #incrementbuttonicon>
                         <mat-icon class="text-black">add</mat-icon>
                     </ng-template>
@@ -52,7 +53,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="product.category!='Sample'">
         <div class="tabs">
             <div class="tab" [class.active]="activeTab === 'description'" (click)="setTab('description')">
                 Description
