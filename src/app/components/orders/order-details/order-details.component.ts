@@ -85,4 +85,11 @@ export class OrderDetailsComponent implements OnInit {
     const url = `mailto:${this.orderData?.email}`;
     window.open(url, '_blank');
   }
+  downloadInvoice() {
+    const a = document.createElement('a');
+    a.href = this.baseUrl + this.orderData.invoicePath?.replace('/var/TNMart/Deployable/wwwroot', '');
+    a.target = '_blank';
+    a.download = this.orderData.invoicePath.split('/').pop() || 'Invoice.pdf';
+    a.click();
+  }
 }
