@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
-import { banner, benefitsBanner, mobBanner, mobBenefitsBanner, topProducts } from './banner';
+import { banner, benefitsBanner, featureItemImages, mobBanner, mobBenefitsBanner, topProducts } from './banner';
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from "@angular/material/icon";
 import { TooltipModule } from 'primeng/tooltip';
@@ -19,12 +19,14 @@ export class HomeComponent implements OnInit {
   onResize(event?: any) {
     let innerWidth = window.innerWidth;
     if (innerWidth >= 510) {
-      this.banners = banner
-      this.benefitsBanner = benefitsBanner
+      this.banners = banner;
+      this.benefitsBanner = benefitsBanner;
+      this.showFeatureCarousel = false;
     }
     else {
-      this.banners = mobBanner
-      this.benefitsBanner = mobBenefitsBanner
+      this.banners = mobBanner;
+      this.benefitsBanner = mobBenefitsBanner;
+      this.showFeatureCarousel = true;
     }
   }
   responsiveOptions: any[] = [];
@@ -33,6 +35,8 @@ export class HomeComponent implements OnInit {
   topProducts: any;
   productsList: any[] = [];
   baseUrl = environment.API_URL;
+  showFeatureCarousel: boolean = false;
+  featureItemImages = featureItemImages;
   constructor(private router: Router, private productService: ProductService) { }
   ngOnInit() {
     this.responsiveOptions = [

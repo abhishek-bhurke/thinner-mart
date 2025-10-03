@@ -151,6 +151,12 @@ html {
     height: 48px !important;
 }
 
+@media (max-width:754px) {
+    .product-list-name {
+        height: auto !important;
+    }
+}
+
 ::ng-deep.cdk-global-scrollblock {
     overflow: visible !important;
 }

@@ -49,3 +49,22 @@ export const topProducts = {
     product2: '../../../assets/images/top-product-2.png',
     product3: '../../../assets/images/top-product-3.png'
 };
+
+export const featureItemImages = [
+    {
+        src: '../../../assets/images/free delivery.svg',
+        data: 'Free Delivery'
+    },
+    {
+        src: '../../../assets/images/gst billing.svg',
+        data: 'GST Billing'
+    },
+    {
+        src: '../../../assets/images/secure payment.svg',
+        data: 'Secured Payment'
+    },
+    {
+        src: "../../../assets/images/15 days replacement'.svg",
+        data: '15 Days Replacement'
+    }
+]

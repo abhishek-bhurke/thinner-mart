@@ -176,20 +176,22 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    /* centers the row */
     gap: 20px;
     padding: 20px;
 }
 
 .feature-item {
     width: 45%;
-    /* ~2 items per row on small screens */
     text-align: center;
 }
 
 @media (min-width: 768px) {
     .feature-item {
         width: 16.66%;
-        /* approx 1/6 of row = like col-md-2 */
     }
+}
+
+.feature-item-1 {
+    width: 100%;
+    text-align: center;
 }

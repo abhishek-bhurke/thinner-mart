@@ -5,7 +5,7 @@
             <img [src]="banner.src" class="carousel-image">
         </ng-template>
     </p-carousel>
-    <div class="feature-container">
+    <div class="feature-container" *ngIf="!showFeatureCarousel">
         <div class="feature-item"><img src="../../../assets/images/free delivery.svg">
             <div class="fw-bold mt-2" style="font-size:14px;">Free Delivery</div>
         </div>
@@ -18,6 +18,16 @@
         <div class="feature-item"><img src="../../../assets/images/15 days replacement'.svg">
             <div class="fw-bold mt-2" style="font-size:14px;">15 Days Replacement</div>
         </div>
+    </div>
+    <div *ngIf="showFeatureCarousel">
+        <p-carousel [value]="featureItemImages" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions"
+            [circular]="true" [autoplayInterval]="3000" [showNavigators]="false" [showIndicators]="false">
+            <ng-template let-banner #item>
+                <div class="feature-item-1"><img [src]="banner.src">
+                    <div class="fw-bold mt-2" style="font-size:14px;">{{banner.data}}</div>
+                </div>
+            </ng-template>
+        </p-carousel>
     </div>
     <div class="heading-text text-center mt-4">Key Benefits of Our Products</div>
     <div class="mt-3">
