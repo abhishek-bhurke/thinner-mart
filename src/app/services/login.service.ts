@@ -25,4 +25,13 @@ export class LoginService {
   getUserById(data: any): Observable<any> {
     return this.http.post(`/api/User/GetById`, data);
   }
+  forgotPasswordGetOtp(data: any): Observable<any> {
+    return this.http.post(`/api/Auth/ForgetPassword`, data);
+  }
+  validateForgotPasswordOtp(data: any): Observable<any> {
+    return this.http.post(`/api/Auth/ValidateForgetPasswordOtp`, data);
+  }
+  resetPassword(data: any): Observable<any> {
+    return this.http.post(`/api/Auth/ResetPassword`, data);
+  }
 }

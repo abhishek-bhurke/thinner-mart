@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-login',
@@ -68,6 +69,19 @@ export class LoginComponent implements OnInit {
       maxHeight: '90vh',
       disableClose: true,
       panelClass: 'signup-dialog-container',
+      // backdropClass: 'glass-backdrop',
+      autoFocus: false
+    });
+    dialogRef.afterClosed().subscribe(res => {
+
+    })
+  }
+  forgotPassword() {
+    let dialogRef = this.matdialog.open(ForgotPasswordComponent, {
+      height: 'auto',
+      width: 'auto',
+      disableClose: true,
+      panelClass: 'login-dialog-container',
       // backdropClass: 'glass-backdrop',
       autoFocus: false
     });
