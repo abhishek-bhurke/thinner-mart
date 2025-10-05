@@ -120,7 +120,7 @@ export class CheckoutComponent {
     else {
       if (this.total >= 4999) {
         if (this.checkoutForm.controls['paymentMode'].value == 'cod') {
-          if (this.checkoutForm.controls['city'].value.toLowerCase().includes('mumbai')) {
+          if (this.checkoutForm.controls['city'].value.toLowerCase().includes('mumbai') || this.checkoutForm.controls['city'].value.toLowerCase().includes('thane')) {
             if (this.total > 10999) {
               this.advancedAmount = (this.total / 10) > 3000 ? 3000 : (this.total / 10);
               let dialogRef = this.dialog.open(AdvanceAmountConfirmationComponent, {
