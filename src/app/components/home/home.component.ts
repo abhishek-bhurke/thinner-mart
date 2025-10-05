@@ -73,14 +73,22 @@ export class HomeComponent implements OnInit {
         numScroll: 1,
       },
     ];
+    // if (typeof window !== 'undefined') {
+    //   this.onResize()
+    // }
+    // if (typeof window !== 'undefined') {
+    //   this.onLoad()
+    // }
+    this.topProducts = topProducts;
+    this.getAllProducts();
+  }
+  ngAfterViewInit() {
     if (typeof window !== 'undefined') {
       this.onResize()
     }
     if (typeof window !== 'undefined') {
       this.onLoad()
     }
-    this.topProducts = topProducts;
-    this.getAllProducts();
   }
   redirectToProduct(id: any) {
     this.router.navigate(['product'], { queryParams: { id: id } })
