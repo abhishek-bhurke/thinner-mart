@@ -76,6 +76,9 @@ export class HomeComponent implements OnInit {
     if (typeof window !== 'undefined') {
       this.onResize()
     }
+    if (typeof window !== 'undefined') {
+      this.onLoad()
+    }
     this.topProducts = topProducts;
     this.getAllProducts();
   }
