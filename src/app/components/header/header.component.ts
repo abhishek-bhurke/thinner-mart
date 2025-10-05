@@ -9,10 +9,13 @@ import { LoginService } from '../../services/login.service';
 import { StorageService } from '../../services/storage.service';
 import { CartService } from '../../services/cart.service';
 import { environment } from '../../environments/environment';
+import { TranslationService } from '../../services/translation.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, MatIconModule, MatDialogModule, CommonModule],
+  imports: [RouterModule, MatIconModule, MatDialogModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -25,12 +28,14 @@ export class HeaderComponent implements OnInit {
   productQuantity: number = 0;
   baseUrl = environment.API_URL;
   whatsappNumber = 8452006089;
+  language: string = 'en';
   constructor(private eRef: ElementRef,
     private router: Router,
     private dialog: MatDialog,
     private loginService: LoginService,
     private storageService: StorageService,
-    private cartService: CartService) {
+    private cartService: CartService,
+    private translateService: TranslateService) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         if (typeof window !== 'undefined') {
@@ -55,7 +60,13 @@ export class HeaderComponent implements OnInit {
       if (res) {
         this.getCart()
       }
-    })
+    });
+    const savedLang: any = this.storageService.getItem('app_lang')
+    this.language = savedLang || 'en';
+    this.translateService.addLangs(['en', 'hi']);
+    this.translateService.setFallbackLang('en');
+    const browserLang: any = savedLang || this.translateService.getBrowserLang();
+    this.translateService.use(['en', 'hi'].includes(browserLang) ? browserLang : 'en');
   }
   ngOnInit() {
     this.routeChange();
@@ -182,5 +193,9 @@ export class HeaderComponent implements OnInit {
   redirectToFacebook() {
     const url = 'https://www.facebook.com/share/17F7i39mPY/';
     window.open(url, '_blank')
+  }
+  switchLang(event: any) {
+    this.translateService.use(event);
+    this.storageService.setItem('app_lang', event);
   }
 }

@@ -3,74 +3,75 @@
         <div class="row">
             <div class="col-md-12 d-flex justify-content-between">
                 <div></div>
-                <h3 class="heading-color mb-3 fw-bold">Sign Up</h3>
+                <h3 class="heading-color mb-3 fw-bold">{{"Sign up" | translate}}</h3>
                 <mat-icon class="kt-pointer" (click)="matdialogRef.close()">close</mat-icon>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>First Name</mat-label>
-                    <input matInput placeholder="First Name" formControlName="firstName">
+                    <mat-label>{{"First Name" | translate}}</mat-label>
+                    <input matInput [placeholder]="'First Name' | translate" formControlName="firstName">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Last Name</mat-label>
-                    <input matInput placeholder="Last Name" formControlName="lastName">
+                    <mat-label>{{"Last Name" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Last Name' | translate" formControlName="lastName">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Mobile Number</mat-label>
-                    <input matInput placeholder="Mobile Number" formControlName="mobileNumber">
+                    <mat-label>{{"Mobile Number" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Mobile Number' | translate" formControlName="mobileNumber">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Email ID</mat-label>
-                    <input matInput placeholder="Email ID" formControlName="emailId">
+                    <mat-label>{{"Email ID" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Email ID' | translate" formControlName="emailId">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Address 1</mat-label>
-                    <input matInput placeholder="Address 1" formControlName="address1">
+                    <mat-label>{{"Address 1" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Address 1' | translate" formControlName="address1">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Address 2</mat-label>
-                    <input matInput placeholder="Address 2" formControlName="address2">
+                    <mat-label>{{"Address 2" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Address 2' | translate" formControlName="address2">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>State</mat-label>
-                    <input matInput placeholder="State" formControlName="state">
+                    <mat-label>{{"State" | translate}}</mat-label>
+                    <input matInput [placeholder]="'State' | translate" formControlName="state">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>City</mat-label>
-                    <input matInput placeholder="City" formControlName="city">
+                    <mat-label>{{"City" | translate}}</mat-label>
+                    <input matInput [placeholder]="'City' | translate" formControlName="city">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Pincode</mat-label>
-                    <input matInput placeholder="Pincode" formControlName="pincode">
+                    <mat-label>{{"Pincode" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Pincode' | translate" formControlName="pincode">
                 </mat-form-field>
             </div>
             <div class="col-md-6">
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Password</mat-label>
-                    <input matInput placeholder="Password" [type]="hide() ? 'password' : 'text'"
+                    <mat-label>{{"Password" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Password' | translate" [type]="hide() ? 'password' : 'text'"
                         formControlName="password">
                     <mat-icon class="kt-pointer" matSuffix (click)=" clickEvent($event)">{{hide() ? 'visibility_off' :
                         'visibility'}}</mat-icon>
                 </mat-form-field>
             </div>
             <div class="col-md-12 text-center">
-                <button class="btn btn-login" (click)="registerUser()" [disabled]="signupForm.invalid">Register</button>
+                <button class="btn btn-login" (click)="registerUser()" [disabled]="signupForm.invalid">
+                    {{"Register" | translate}}</button>
             </div>
         </div>
     </form>

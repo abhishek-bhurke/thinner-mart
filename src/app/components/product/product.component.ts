@@ -14,10 +14,11 @@ import { LoginService } from '../../services/login.service';
 import { StorageService } from '../../services/storage.service';
 import { environment } from '../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, MatIconModule, InputNumberModule, FormsModule, TabsModule, TooltipModule],
+  imports: [CommonModule, MatIconModule, InputNumberModule, FormsModule, TabsModule, TooltipModule, TranslateModule],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })

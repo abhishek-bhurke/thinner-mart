@@ -5,10 +5,11 @@ import { ProductService } from '../../services/product.service';
 import { CommonModule } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { TooltipModule } from 'primeng/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-products',
-  imports: [MatIconModule, CommonModule, TooltipModule],
+  imports: [MatIconModule, CommonModule, TooltipModule, TranslateModule],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })

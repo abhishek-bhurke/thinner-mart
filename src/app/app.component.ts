@@ -4,10 +4,11 @@ import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { LoaderComponent } from "./components/loader/loader.component";
 import { StorageService } from './services/storage.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, RouterModule, LoaderComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, RouterModule, LoaderComponent, TranslateModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

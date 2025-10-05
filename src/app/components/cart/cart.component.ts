@@ -12,10 +12,11 @@ import { StorageService } from '../../services/storage.service';
 import { CartService } from '../../services/cart.service';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-cart',
-  imports: [MatFormFieldModule, MatInputModule, CommonModule, FormsModule, MatIconModule, InputNumberModule],
+  imports: [MatFormFieldModule, MatInputModule, CommonModule, FormsModule, MatIconModule, InputNumberModule, TranslateModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss'
 })

@@ -1,5 +1,5 @@
 <div class="section">
-    <div class="heading-text text-center mt-4">Our Products</div>
+    <div class="heading-text text-center mt-4">{{"Our Products" |translate}}</div>
     <div class="our-products-grid mt-3 px-5">
         <div class="products-div" *ngFor="let product of productsList" (click)="redirectToProduct(product.id)">
             <div class="text-center">
@@ -13,7 +13,7 @@
                 <div class="fs-6 fw-bold heading-color mt-1 product-list-name">{{product.name}}</div>
                 <div class="fs-6 heading-color mt-1">{{product.price}}</div>
                 <div class="d-flex justify-content-center mt-2">
-                    <div class="select-options-button">Select Options</div>
+                    <div class="select-options-button">{{"Select Options" |translate}}</div>
                 </div>
             </div>
         </div>

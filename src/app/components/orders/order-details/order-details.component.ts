@@ -8,10 +8,11 @@ import { StorageService } from '../../../services/storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { MatIconModule } from "@angular/material/icon";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-order-details',
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule, TranslateModule],
   templateUrl: './order-details.component.html',
   styleUrl: './order-details.component.scss'
 })

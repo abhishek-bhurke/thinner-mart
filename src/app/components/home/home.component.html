@@ -7,16 +7,16 @@
     </p-carousel>
     <div class="feature-container" *ngIf="!showFeatureCarousel">
         <div class="feature-item"><img src="../../../assets/images/free delivery.svg">
-            <div class="fw-bold mt-2" style="font-size:14px;">Free Delivery</div>
+            <div class="fw-bold mt-2" style="font-size:14px;">{{"Free Delivery" | translate}}</div>
         </div>
         <div class="feature-item"><img src="../../../assets/images/gst billing.svg">
-            <div class="fw-bold mt-2" style="font-size:14px;">GST Billing</div>
+            <div class="fw-bold mt-2" style="font-size:14px;">{{"GST Billing" |translate}}</div>
         </div>
         <div class="feature-item"><img src="../../../assets/images/secure payment.svg">
-            <div class="fw-bold mt-2" style="font-size:14px;">Secured Payment</div>
+            <div class="fw-bold mt-2" style="font-size:14px;">{{"Secured Payment" | translate}}</div>
         </div>
         <div class="feature-item"><img src="../../../assets/images/15 days replacement'.svg">
-            <div class="fw-bold mt-2" style="font-size:14px;">15 Days Replacement</div>
+            <div class="fw-bold mt-2" style="font-size:14px;">{{"15 Days Replacement" | translate}}</div>
         </div>
     </div>
     <div *ngIf="showFeatureCarousel">
@@ -29,12 +29,12 @@
             </ng-template>
         </p-carousel>
     </div>
-    <div class="heading-text text-center mt-4">Key Benefits of Our Products</div>
+    <div class="heading-text text-center mt-4">{{"Key Benefits of Our Products" |translate}}</div>
     <div class="mt-3">
         <img [src]="benefitsBanner" class="w-100">
     </div>
     <div class="mt-3">
-        <div class="heading-text text-center mt-4">Top Products</div>
+        <div class="heading-text text-center mt-4">{{"Top Products" | translate}}</div>
         <div class="row mt-4">
             <div class="col-md-4 top-products-image top-product-1">
                 <img [src]="topProducts.product1" class="">
@@ -48,7 +48,7 @@
         </div>
     </div>
     <div class="mt-3">
-        <div class="heading-text text-center mt-4">Our Products</div>
+        <div class="heading-text text-center mt-4">{{"Our Products" | translate}}</div>
         <div class="our-products-grid mt-3 px-5">
             <div class="products-div" *ngFor="let product of productsList" (click)="redirectToProduct(product.id)">
                 <div class="text-center">
@@ -62,32 +62,23 @@
                     <div class="fs-6 fw-bold heading-color mt-1 product-list-name">{{product.name}}</div>
                     <div class="fs-6 heading-color mt-1">{{product.price}}</div>
                     <div class="d-flex justify-content-center mt-2">
-                        <div class="select-options-button">Select Options</div>
+                        <div class="select-options-button">{{"Select Options" | translate}}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="mt-3">
-        <div class="heading-text text-center mt-4">About Thinner Mart</div>
+        <div class="heading-text text-center mt-4">{{"About Thinner Mart" | translate}}</div>
         <div class="row mt-3 mx-5">
             <div class="col-md-6 about-thinner-mart-image"><img src="../../../assets/images/about-us-products.png"
                     class="about-image">
             </div>
             <div class="col-md-6">
-                <div class="text-justify about-thinner-mart-text line-height-4">India's trusted online destination for
-                    premium quality
-                    thinners at factory prices. We're
-                    here to make thinner buying simple, affordable, and transparent by eliminating middlemen. Whether
-                    you're
-                    a retailer,
-                    paint shop, or industrial buyer, Thinner Mart is designed to serve your needs directly from the
-                    source.
+                <div class="text-justify about-thinner-mart-text line-height-4">{{"India's trusted" | translate}}
                     <br>
-                    Backed by the legacy and expertise of Mehta Corporation, a well-established name in the thinner
-                    manufacturing industry since 2005. With nearly two decades of hands-on experience, Mehta Corporation
-                    brings trust, consistency, and uncompromising quality to this new digital platform. <span
-                        class="read-more" [routerLink]="['about-us']">Read More</span>
+                    {{"Backed by" | translate}}<span class="read-more" [routerLink]="['about-us']">{{"Read More" |
+                        translate}}</span>
                 </div>
             </div>
         </div>
@@ -95,70 +86,69 @@
             <div class="col-md-3">
                 <div class="d-flex about-thinner-mart-icons-color">
                     <mat-icon class="about-thinner-mart-icons-1"> factory</mat-icon>
-                    <span class="ms-3 fs-5 align-content-center">Manufacturing Excellence</span>
+                    <span class="ms-3 fs-5 align-content-center">{{"Manufacturing Excellence" |translate}}</span>
                 </div>
-                <div>State-of-the art manufacturing facility with quality control at every step.
+                <div>{{"State-of-the art" | translate}}
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="d-flex about-thinner-mart-icons-color">
                     <mat-icon class="about-thinner-mart-icons-1"> science</mat-icon>
-                    <span class="ms-3 fs-5 align-content-center">Research & Development</span>
+                    <span class="ms-3 fs-5 align-content-center">{{"Research & Development" |translate}}</span>
                 </div>
-                <div>Continuous innovation to improve our product formulations and performance.
+                <div>{{"Continuous innovation" |translate}}
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="d-flex about-thinner-mart-icons-color">
                     <mat-icon class="about-thinner-mart-icons-1">local_shipping</mat-icon>
-                    <span class="ms-3 fs-5 align-content-center">PAN-India Distribution</span>
+                    <span class="ms-3 fs-5 align-content-center">{{"PAN-India Distribution" |translate}}</span>
                 </div>
-                <div>Serving customer across India with efficient logistics and distribution.
+                <div>{{"Serving customer" |translate}}
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="d-flex about-thinner-mart-icons-color">
                     <mat-icon class="about-thinner-mart-icons-1">check_circle</mat-icon>
-                    <span class="ms-3 fs-5 align-content-center">Quality Certified</span>
+                    <span class="ms-3 fs-5 align-content-center">{{"Quality Certified" |translate}}</span>
                 </div>
-                <div>Our Products comply with industry standards and quality certifications.
+                <div>{{"Our Products comply" |translate}}
                 </div>
             </div>
         </div>
         <div class="mt-3">
-            <div class="heading-text text-center mt-4">How to Order</div>
-            <div class="text-center">Follow these simple steps to order our premium thinners online. It's easy, secure
-                and
-                convinient.</div>
+            <div class="heading-text text-center mt-4">{{"How to Order" |translate}}</div>
+            <div class="text-center">{{"Follow these simple steps" |translate}}</div>
             <div class="row about-thinner-mart-icons mt-0 g-4">
                 <div class="col-md-6 d-flex"><img src="../../../assets/images/number-1.png" height="40">
                     <div class="ms-3">
-                        <div class="about-thinner-mart-icons-color fs-5">Browse Products</div>
-                        <div>Explore our range of professional grade thinners for different applications.</div>
+                        <div class="about-thinner-mart-icons-color fs-5">{{"Browse Products"|translate}}</div>
+                        <div>{{"Explore our range of professional" |translate}}</div>
                     </div>
                 </div>
                 <div class="col-md-6 d-flex"><img src="../../../assets/images/number-2.png" height="40">
                     <div class="ms-3">
-                        <div class="about-thinner-mart-icons-color fs-5">Select Options</div>
-                        <div>Choose the right product, size and quantity to meet your requirements.</div>
+                        <div class="about-thinner-mart-icons-color fs-5">{{"Select Options" |translate}}</div>
+                        <div>{{"Choose the right product" |translate}}</div>
                     </div>
                 </div>
                 <div class="col-md-6 d-flex"><img src="../../../assets/images/number-3.png" height="40">
                     <div class="ms-3">
-                        <div class="about-thinner-mart-icons-color fs-5">Add to Cart</div>
-                        <div>Add your selected product to the shopping cart for checkout.</div>
+                        <div class="about-thinner-mart-icons-color fs-5">{{"Add to Cart" |translate}}</div>
+                        <div>{{"Add your selected product" |translate}}</div>
                     </div>
                 </div>
                 <div class="col-md-6 d-flex"><img src="../../../assets/images/number-4.png" height="40">
                     <div class="ms-3">
-                        <div class="about-thinner-mart-icons-color fs-5">Place Order</div>
-                        <div>Complete your purchase with our secure payment options.</div>
+                        <div class="about-thinner-mart-icons-color fs-5">{{"Place Order" |translate}}</div>
+                        <div>{{"Complete your purchase" |translate}}</div>
                     </div>
                 </div>
                 <div class="col-md-12 d-flex"><img src="../../../assets/images/number-5.png" height="40">
                     <div class="ms-3">
-                        <div class="about-thinner-mart-icons-color fs-5">Delivery</div>
-                        <div>Relax, and we'll deliver your order within 4-5 business days, depending on your location.
+                        <div class="about-thinner-mart-icons-color fs-5">{{"Delivery" |translate}}</div>
+                        <div>
+                            {{"Relax, and we'll" |translate}}
                         </div>
                     </div>
                 </div>
@@ -166,40 +156,33 @@
         </div>
     </div>
     <div class="mt-3">
-        <div class="heading-text text-center mt-4">Why Buy From Us ?</div>
+        <div class="heading-text text-center mt-4">{{"Why Buy From Us?" |translate}}</div>
         <div class="row about-thinner-mart-icons g-2 mt-0">
             <div class="col-md-3"></div>
             <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span
-                    class="ms-2">Direct from
-                    manufacturer pricing
+                    class="ms-2">{{"Direct from manufacturer pricing" |translate}}
                 </span></div>
             <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span
-                    class="ms-2">Bulk
-                    order
-                    discount available</span>
+                    class="ms-2">{{"Bulk order discount available" |translate}}</span>
             </div>
             <div class="col-md-3"></div>
             <div class="col-md-3"></div>
-            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span
-                    class="ms-2">Fast
-                    shipping across India
+            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span class="ms-2">
+                    {{"Fast shipping across India" |translate}}
                 </span>
             </div>
-            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span
-                    class="ms-2">Sample
-                    options for product testing
+            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span class="ms-2">
+                    {{"Sample options for product testing" |translate}}
                 </span>
             </div>
             <div class="col-md-3"></div>
             <div class="col-md-3"></div>
-            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span
-                    class="ms-2">Secure
-                    payment options
+            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span class="ms-2">
+                    {{"Secure payment options" | translate}}
                 </span>
             </div>
-            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span
-                    class="ms-2">Expert
-                    customer support
+            <div class="col-md-3 d-flex"><mat-icon class="why-buy-icon-color">check_circle</mat-icon><span class="ms-2">
+                    {{"Expert customer support" | translate}}
                 </span>
             </div>
             <div class="col-md-3"></div>

@@ -8,10 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { InputOtpModule } from 'primeng/inputotp';
 import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-enter-password',
-  imports: [MatFormFieldModule, MatIconModule, FormsModule, ReactiveFormsModule, CommonModule, MatInputModule, InputOtpModule, MatDialogModule],
+  imports: [MatFormFieldModule, MatIconModule, FormsModule, ReactiveFormsModule, CommonModule, MatInputModule, InputOtpModule, MatDialogModule, TranslateModule],
   templateUrl: './enter-password.component.html',
   styleUrl: './enter-password.component.scss'
 })

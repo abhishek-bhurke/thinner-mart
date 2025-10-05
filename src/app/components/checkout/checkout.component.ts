@@ -17,11 +17,12 @@ import { ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AdvanceAmountConfirmationComponent } from './advance-amount-confirmation/advance-amount-confirmation.component';
 import { TooltipModule } from 'primeng/tooltip';
+import { TranslateModule } from '@ngx-translate/core';
 declare var Razorpay: any;
 
 @Component({
   selector: 'app-checkout',
-  imports: [CommonModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatRadioModule, MatDialogModule, TooltipModule],
+  imports: [CommonModule, MatFormFieldModule, FormsModule, MatInputModule, ReactiveFormsModule, MatCheckboxModule, MatIconModule, MatRadioModule, MatDialogModule, TooltipModule, TranslateModule],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.scss'
 })

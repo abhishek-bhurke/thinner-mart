@@ -2,18 +2,19 @@
     <div class="row">
         <div class="col-md-12 d-flex justify-content-between">
             <div></div>
-            <h3 class="heading-color mb-3 fw-bold">Enter OTP</h3>
+            <h3 class="heading-color mb-3 fw-bold">{{"Enter OTP" | translate}}</h3>
             <mat-icon class="kt-pointer" (click)="matdialogRef.close()">close</mat-icon>
         </div>
         <div class="col-md-12 text-center">
-            OTP has been successfully sent to your email ID and mobile number.
+            {{"OTP has been successfully" | translate}}
         </div>
         <div class="col-md-12 d-flex justify-content-center my-3">
             <p-inputotp [(ngModel)]="otp" size="large" [integerOnly]="true" />
         </div>
         <div class="col-md-12 text-center">
-            <button class="btn btn-login" (click)="validateOTP()" [disabled]="otp.length<4">Send
-                OTP</button>
+            <button class="btn btn-login" (click)="validateOTP()" [disabled]="otp.length<4">
+                {{"Send OTP" | translate}}
+            </button>
         </div>
     </div>
 </div>

@@ -12,10 +12,11 @@ import { StorageService } from '../../services/storage.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatIconModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatIconModule, TranslateModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   encapsulation: ViewEncapsulation.None

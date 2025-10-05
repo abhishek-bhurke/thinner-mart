@@ -9,10 +9,11 @@ import { TooltipModule } from 'primeng/tooltip';
 import { MatIconModule } from "@angular/material/icon";
 import { StorageService } from '../../services/storage.service';
 import { AdminService } from '../../services/admin.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule, CarouselModule, TooltipModule, MatIconModule],
+  imports: [CommonModule, CarouselModule, TooltipModule, MatIconModule, TranslateModule],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })

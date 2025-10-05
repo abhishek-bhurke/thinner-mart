@@ -27,9 +27,11 @@ export const AuthInterceptor: HttpInterceptorFn = (
   const router = inject(Router)
   const token = storageService.getItem('token');
   loaderService.show();
-  const cloned = token
-    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` }, url: environment.API_URL + req.url })
-    : req.clone({ url: environment.API_URL + req.url });
+  let cloned: HttpRequest<any>
+  if (req.url.includes('assets'))
+    cloned = token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` }, url: environment.FRONTEND_URL + req.url }) : req.clone({ url: environment.FRONTEND_URL + req.url });
+  else
+    cloned = token ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` }, url: environment.API_URL + req.url }) : req.clone({ url: environment.API_URL + req.url });
 
   return next(cloned).pipe(
     catchError((error) => {

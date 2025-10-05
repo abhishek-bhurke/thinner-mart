@@ -1,10 +1,10 @@
 <div class="cart-section">
-    <div class="heading-text mt-4">Cart</div>
+    <div class="heading-text mt-4">{{"Cart" | translate}}</div>
     <div class="row gx-5 mt-2" *ngIf="productList.length">
         <div class="col-md-8">
             <div class="border-bottom-1 d-flex justify-content-between">
-                <div class="pb-2">PRODUCT</div>
-                <div class="pb-2">TOTAL</div>
+                <div class="pb-2">{{"PRODUCT"| translate}}</div>
+                <div class="pb-2">{{"TOTAL" | translate}}</div>
             </div>
             <div *ngFor="let product of productList;let i = index;">
                 <div class="row mt-3 border-bottom-1 pb-3" *ngFor="let variant of product.variant;let j = index;">
@@ -15,7 +15,7 @@
                             <div class="col-md-8">
                                 <div class="fs-5 heading-color">{{product.productName}}</div>
                                 <div class="mt-1">₹{{variant.price | number}}</div>
-                                <div class="mt-1">Size: {{variant.size}} {{variant.unit}}</div>
+                                <div class="mt-1">{{"Size" | translate}} : {{variant.size}} {{variant.unit}}</div>
                                 <div class="mt-1">
                                     <p-inputnumber [showButtons]="true" buttonLayout="horizontal"
                                         [disabled]="product.categoryName=='Sample'" [(ngModel)]="product.productQty"
@@ -30,7 +30,7 @@
                                     </p-inputnumber>
                                 </div>
                                 <div class="mt-1"><span class="heading-color underline kt-pointer"
-                                        (click)="removeItem(i)">Remove item</span>
+                                        (click)="removeItem(i)">{{"Remove item" | translate}}</span>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="border-bottom-1 pb-2">CART TOTALS</div>
+            <div class="border-bottom-1 pb-2">{{"CART TOTALS" | translate}}</div>
             <div class="border-bottom-1 d-none">
                 <div class="accordion" id="couponAccordionMain">
                     <div class="accordion-item border-0">
@@ -69,20 +69,20 @@
                 </div>
             </div>
             <div class="border-bottom-1 d-flex fw-bold h5 heading-color justify-content-between py-3">
-                <span>Estimated total</span><span>₹{{purchaseTotal | number}}</span>
+                <span>{{"Estimated total" | translate}}</span><span>₹{{purchaseTotal | number}}</span>
             </div>
             <div class="mt-3">
                 <div class="proceed-to-checkout" (click)="proceedToCheckout()">
-                    Proceed to Checkcout
+                    {{"Proceed to Checkout" | translate}}
                 </div>
             </div>
         </div>
     </div>
     <div *ngIf="productList.length==0" class="mt-2 text-center">
         <img src="../../../assets/images/empty-cart.svg" class="w-12rem">
-        <div class="fw-bold mt-2">Oops! Your cart is empty.</div>
+        <div class="fw-bold mt-2">{{"Oops! Your cart is empty." | translate}}</div>
         <div class="d-flex justify-content-center mt-3">
-            <div class="select-options-button" (click)="goToProducts()">Explore Products</div>
+            <div class="select-options-button" (click)="goToProducts()">{{"Explore Products" | translate}}</div>
         </div>
     </div>
 </div>

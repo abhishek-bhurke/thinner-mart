@@ -8,10 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginService } from '../../services/login.service';
 import { EnterOtpComponent } from '../enter-otp/enter-otp.component';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-forgot-password',
-  imports: [MatFormFieldModule, MatIconModule, FormsModule, ReactiveFormsModule, CommonModule, MatInputModule, MatDialogModule],
+  imports: [MatFormFieldModule, MatIconModule, FormsModule, ReactiveFormsModule, CommonModule, MatInputModule, MatDialogModule, TranslateModule],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })

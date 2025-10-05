@@ -9,10 +9,11 @@ import { InputOtpModule } from 'primeng/inputotp';
 import { LoginService } from '../../services/login.service';
 import { EnterPasswordComponent } from '../enter-password/enter-password.component';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-enter-otp',
-  imports: [MatFormFieldModule, MatIconModule, FormsModule, ReactiveFormsModule, CommonModule, MatInputModule, InputOtpModule, MatDialogModule],
+  imports: [MatFormFieldModule, MatIconModule, FormsModule, ReactiveFormsModule, CommonModule, MatInputModule, InputOtpModule, MatDialogModule, TranslateModule],
   templateUrl: './enter-otp.component.html',
   styleUrl: './enter-otp.component.scss'
 })

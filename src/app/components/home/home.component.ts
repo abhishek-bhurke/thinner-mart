@@ -7,10 +7,11 @@ import { MatIconModule } from "@angular/material/icon";
 import { TooltipModule } from 'primeng/tooltip';
 import { ProductService } from '../../services/product.service';
 import { environment } from '../../environments/environment';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
-  imports: [CarouselModule, CommonModule, RouterLink, MatIconModule, TooltipModule],
+  imports: [CarouselModule, CommonModule, RouterLink, MatIconModule, TooltipModule, TranslateModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -37,7 +38,8 @@ export class HomeComponent implements OnInit {
   baseUrl = environment.API_URL;
   showFeatureCarousel: boolean = false;
   featureItemImages = featureItemImages;
-  constructor(private router: Router, private productService: ProductService) { }
+  constructor(private router: Router, private productService: ProductService) {
+  }
   ngOnInit() {
     this.responsiveOptions = [
       {

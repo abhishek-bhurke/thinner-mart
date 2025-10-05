@@ -1,5 +1,5 @@
 <div class="orders-section">
-    <div class="heading-text mt-4">Orders</div>
+    <div class="heading-text mt-4">{{"Orders" | translate}}</div>
     <div *ngIf="ordersList.length">
         <div *ngFor="let order of ordersList;let i = index;" class="py-3 border-bottom-1 order-container kt-pointer"
             (click)="gotToOrderDetails(order.id)">
@@ -25,9 +25,9 @@
                             {{product.unit}}
                         </span>
                     </div>
-                    <div>Order placed: {{order.orderDate}}</div>
+                    <div>{{"Order placed" | translate}}: {{order.orderDate}}</div>
                     <div class="mt-1">
-                        <div>Order Status:
+                        <div>{{"Order Status" | translate}}:
                             <span *ngIf="order.orderStatus=='Processing'"
                                 class="text-warning">{{order.orderStatus}}</span>
                             <span *ngIf="order.orderStatus=='Shipped'"
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="mt-1">
-                        <div>Payment Status:
+                        <div>{{"Payment Status" | translate}}:
                             <span *ngIf="order.paymentStatus=='Pending'"
                                 class="text-warning">{{order.paymentStatus}}</span>
                             <span *ngIf="order.paymentStatus=='Completed'"
@@ -60,9 +60,9 @@
     </div>
     <div class="text-center" *ngIf="ordersList.length==0">
         <img src="../../../assets/images/empty-orders.svg" class="w-12rem">
-        <div class="fw-bold mt-2">No orders placed.</div>
+        <div class="fw-bold mt-2">{{"No orders placed" | translate}}</div>
         <div class="d-flex justify-content-center mt-3">
-            <div class="select-options-button" (click)="goToProducts()">Explore Products</div>
+            <div class="select-options-button" (click)="goToProducts()">{{"Explore Products" | translate}}</div>
         </div>
     </div>
 </div>

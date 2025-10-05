@@ -1,5 +1,5 @@
 <div class="fixed-top-nav d-flex justify-content-between">
-    <div class="text-white">GSTIN: 27AAWPM0837H1ZA | MSME UDYAM No: MH-33-0208978</div>
+    <div class="text-white">GSTIN : 27FFBPM0376A1ZS | MSME UDYAM No : MH-33-0637119</div>
     <div class="d-flex align-items-center"><mat-icon class="text-white me-1 kt-pointer"
             (click)="redirectToFacebook()">facebook</mat-icon>
         <span class="kt-pointer d-flex" (click)="redirectToWhatsapp()">
@@ -27,31 +27,36 @@
         id="navbarNav">
         <ul class="navbar-nav ms-3">
             <li class="nav-item" (click)="routeChange()">
-                <a class="nav-link custom-link" [class.active]="activeSection==='home'" [routerLink]="['']">Home</a>
+                <a class="nav-link custom-link" [class.active]="activeSection==='home'" [routerLink]="['']">{{"Home"
+                    |translate}}</a>
             </li>
             <li class="nav-item" (click)="routeChange()">
                 <a class="nav-link custom-link" [class.active]="activeSection==='about-us'"
-                    [routerLink]="['about-us']">About Us</a>
+                    [routerLink]="['about-us']">{{"About Us" |translate}}</a>
             </li>
             <li class="nav-item" (click)="routeChange()">
                 <a class="nav-link custom-link" [class.active]="activeSection==='products'"
-                    [routerLink]="['products']">Products</a>
+                    [routerLink]="['products']">{{"Products" |translate}}</a>
             </li>
             <li class="nav-item" (click)="routeChange()" *ngIf="isLoggedIn">
                 <a class="nav-link custom-link" [class.active]="activeSection==='orders'"
-                    [routerLink]="['orders']">Orders</a>
+                    [routerLink]="['orders']">{{"Orders" |translate}}</a>
             </li>
             <li class="nav-item login-nav" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
-                <a class="nav-link custom-link">Login</a>
+                <a class="nav-link custom-link">{{"Login" |translate}}</a>
             </li>
             <li class="nav-item login-nav" (click)="logout()" *ngIf="isLoggedIn">
-                <a class="nav-link custom-link">Logout</a>
+                <a class="nav-link custom-link">{{"Logout" |translate}}</a>
             </li>
         </ul>
     </div>
+    <select class="me-2" [(ngModel)]="language" (ngModelChange)="switchLang($event)">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+    </select>
     <div class="login-button me-2">
-        <button class="btn btn-login" (click)="openLoginDialog()" *ngIf="!isLoggedIn">Login</button>
-        <button class="btn btn-outline-danger" (click)="logout()" *ngIf="isLoggedIn">Logout</button>
+        <button class="btn btn-login" (click)="openLoginDialog()" *ngIf="!isLoggedIn">{{"Login" |translate}}</button>
+        <button class="btn btn-outline-danger" (click)="logout()" *ngIf="isLoggedIn">{{"Logout" |translate}}</button>
     </div>
     <div class="header-cart" data-bs-toggle="offcanvas" data-bs-target="#shoppingcartcanvas">
         <span class="me-2 header-cart-price">₹{{totalPrice | number}}</span>
@@ -63,7 +68,7 @@
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingcartcanvas" aria-labelledby="shoppingcartcanvasLabel">
     <div class="offcanvas-header">
-        <h5 id="offcanvasRightLabel" class="mb-0">Cart</h5>
+        <h5 id="offcanvasRightLabel" class="mb-0">{{"Cart" |translate}}</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body" *ngIf="cartItems.length">
@@ -76,10 +81,10 @@
                     <div class="fw-bold">{{product.productName}} - {{product.size}} {{product.unit}}</div>
                     <div class="d-flex justify-content-between">
                         <div>
-                            <div>Units in box : {{variant.qty}}</div>
-                            <div>Price per Unit : ₹{{variant.price}}</div>
-                            <div>Quantity : {{product.productQty}}</div>
-                            <div>Subtotal:
+                            <div>{{"Units in box" |translate}} : {{variant.qty}}</div>
+                            <div>{{"Price per Unit" |translate}} : ₹{{variant.price}}</div>
+                            <div>{{"Quantity" |translate}} : {{product.productQty}}</div>
+                            <div>{{"Subtotal" |translate}} :
                                 <!-- {{variant.qty}} * {{variant.price}} * {{product.productQty}} = -->
                                 ₹{{(variant.qty * variant.price * product.productQty) | number}}
                             </div>
@@ -89,22 +94,24 @@
             </div>
         </div>
         <div class="d-flex justify-content-center p-3 subtotal border-bottom-1">
-            <h5 class="heading-color fw-bold mb-0">Total : ₹{{totalPrice | number}}</h5>
+            <h5 class="heading-color fw-bold mb-0">{{"Total" |translate}} : ₹{{totalPrice | number}}</h5>
         </div>
         <div class="cart-buttons mt-3 d-flex justify-content-evenly">
             <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 me-1" (click)="viewCart()"
-                data-bs-dismiss="offcanvas">View
-                Cart</button>
+                data-bs-dismiss="offcanvas">
+                {{"View Cart" |translate}}
+            </button>
             <button class="bg-black-alpha-50 border-0 btn btn-primary w-100 ms-1" (click)="redirectToCheckout()"
-                data-bs-dismiss="offcanvas">Checkout</button>
+                data-bs-dismiss="offcanvas">{{"Checkout" |translate}}</button>
         </div>
     </div>
     <div class="offcanvas-body" *ngIf="cartItems.length==0">
         <div class="text-center">
             <img src="../../../assets/images/empty-cart.svg" class="w-12rem">
-            <div class="fw-bold mt-2">Oops! Your cart is empty.</div>
+            <div class="fw-bold mt-2">{{"Oops! Your cart is empty." |translate}}</div>
             <div class="d-flex justify-content-center mt-3">
-                <div class="select-options-button" (click)="goToProducts()" data-bs-dismiss="offcanvas">Explore Products
+                <div class="select-options-button" (click)="goToProducts()" data-bs-dismiss="offcanvas">
+                    {{"Explore Products" |translate}}
                 </div>
             </div>
         </div>
