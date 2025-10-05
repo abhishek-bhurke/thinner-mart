@@ -30,6 +30,16 @@ export class HomeComponent implements OnInit {
       this.showFeatureCarousel = true;
     }
   }
+  @HostListener('window:load', ['$event'])
+  onLoad(event?: any) {
+    let innerWidth = window.innerWidth;
+    if (innerWidth >= 510) {
+      this.showFeatureCarousel = false;
+    }
+    else {
+      this.showFeatureCarousel = true;
+    }
+  }
   responsiveOptions: any[] = [];
   banners: any[] = [];
   benefitsBanner: any;
