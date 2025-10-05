@@ -65,3 +65,25 @@
     opacity: .6;
     pointer-events: none;
 }
+
+.checkout-product-image-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.checkout-product-image-quantity {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    background-color: #fff;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 6px;
+    border-radius: 50%;
+    min-width: 20px;
+    text-align: center;
+    line-height: 1;
+    border: 1px solid;
+}

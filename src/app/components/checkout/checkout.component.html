@@ -135,11 +135,11 @@
                     </div>
                     <div *ngFor="let product of productList;let i = index;">
                         <div class="row my-5" *ngFor="let variant of product.variant;let j = index;">
-                            <div class="col-md-3"><img class="checkout-product-image" [src]="baseUrl+'/'+variant.image">
-                                <!-- <span
-                                    class="position-absolute translate-middle product-qty-badge rounded-pill bg-white text-black border-1">
-                                    {{product.productQty}}
-                                </span> -->
+                            <div class="col-md-3">
+                                <div class="checkout-product-image-wrapper">
+                                    <img class="checkout-product-image" [src]="baseUrl+'/'+variant.image">
+                                    <span class="checkout-product-image-quantity">{{product.productQty}}</span>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div>{{product.productName}}</div>
