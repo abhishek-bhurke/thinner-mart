@@ -24,7 +24,7 @@
             [circular]="true" [autoplayInterval]="3000" [showNavigators]="false" [showIndicators]="false">
             <ng-template let-banner #item>
                 <div class="feature-item-1"><img [src]="banner.src">
-                    <div class="fw-bold mt-2" style="font-size:14px;">{{banner.data}}</div>
+                    <div class="fw-bold mt-2" style="font-size:14px;">{{banner.data | translate}}</div>
                 </div>
             </ng-template>
         </p-carousel>
