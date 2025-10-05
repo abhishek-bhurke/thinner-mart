@@ -34,15 +34,21 @@ body {
     cursor: default;
 }
 
-@media (max-width:566px) {
+@media screen and (max-width:566px) {
     body {
         padding-top: 170px;
     }
 }
 
-@media (max-width:348px) {
+@media screen and (max-width:384px) {
     body {
-        padding-top: 270px;
+        padding-top: 217px;
+    }
+}
+
+@media screen and (max-width:348px) {
+    body {
+        padding-top: 264px;
     }
 }
 
