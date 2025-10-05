@@ -1,6 +1,6 @@
 <div class="cart-section">
     <div class="heading-text mt-4">{{"Checkout" | translate}}</div>
-    <div class="row">
+    <div class="row gy-3">
         <div class="col-md-8">
             <form [formGroup]="checkoutForm">
                 <div class="row mt-3 border-bottom-1 pb-3">
@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="fs-5 text-muted mt-3">
+                <!-- <div class="fs-5 text-muted mt-3">
                     {{"By proceeding with your purchase" | translate}}
                 </div>
                 <div class="d-flex justify-content-between mt-3">
@@ -124,7 +124,7 @@
                             {{"Place Order" | translate}}
                         </div>
                     </div>
-                </div>
+                </div> -->
             </form>
         </div>
         <div class="col-md-4">
@@ -198,6 +198,23 @@
                             <div>{{"Total" | translate}}</div>
                             <div>₹{{total | number}}</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="fs-5 text-muted mt-3">
+                {{"By proceeding with your purchase" | translate}}
+            </div>
+            <div class="d-flex justify-content-between mt-3">
+                <div class="d-flex text-muted underline kt-pointer" (click)="goToCart()">
+                    <div><mat-icon>keyboard_backspace</mat-icon></div><span class="ms-2">
+                        {{"Return to Cart" | translate}}</span>
+                </div>
+                <div>
+                    <div class="place-order-button text-nowrap"
+                        [class.place-order-button-disable]="checkoutForm.invalid" (click)="placeOrder()">
+                        {{"Place Order" | translate}}
                     </div>
                 </div>
             </div>
