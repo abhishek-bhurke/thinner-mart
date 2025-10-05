@@ -158,3 +158,18 @@
     color: #fff;
     cursor: pointer;
 }
+
+.gst-msme {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gst-msme-item {
+    white-space: break-spaces;
+}
+
+@media (max-width: 600px) {
+    .gst-msme-item:last-child {
+        flex-basis: 100%;
+    }
+}
