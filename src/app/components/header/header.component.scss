@@ -124,9 +124,18 @@
     border-radius: 5px;
 }
 
+.header-cart-mob {
+    display: flex;
+    position: relative;
+}
+
 ::ng-deep.badge {
     right: 11% !important;
     font-size: 9px !important;
+}
+
+.badge-mob {
+    right: -59% !important
 }
 
 .cart-buttons button {
@@ -171,5 +180,24 @@
 @media (max-width: 600px) {
     .gst-msme-item:last-child {
         flex-basis: 100%;
+    }
+}
+
+.desktop-header {
+    display: flex;
+}
+
+.mobile-header {
+    display: none;
+}
+
+@media (max-width: 490px) {
+    .desktop-header {
+        display: none;
+    }
+
+    .mobile-header {
+        display: flex;
+        justify-content: space-between;
     }
 }

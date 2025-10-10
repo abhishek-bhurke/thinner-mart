@@ -15,7 +15,7 @@
         </span>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-header shadow-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-header shadow-2 desktop-header">
     <a class="navbar-brand d-flex align-items-center me-0" href="#">
         <div class="logo-box text-white text-center"><img class="header-company-logo"
                 src="../../../assets/images/Thinner mart logo.jpg">
@@ -67,6 +67,78 @@
         <span class="position-absolute translate-middle badge rounded-pill bg-danger">
             {{productQuantity}}
         </span>
+    </div>
+</nav>
+<nav
+    class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-header shadow-2 mobile-header align-items-baseline">
+    <div>
+        <a class="navbar-brand d-flex align-items-center me-0" href="#">
+            <div class="logo-box text-white text-center"><img class="header-company-logo"
+                    src="../../../assets/images/Thinner mart logo.jpg">
+            </div>
+        </a>
+    </div>
+    <div class="d-flex">
+        <!-- <select class="me-2" [(ngModel)]="language" (ngModelChange)="switchLang($event)">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+        </select> -->
+        <div class="me-3 align-items-center">
+            <div [matMenuTriggerFor]="languageMenu">
+                <svg class="mt-2" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="#000">
+                    <path d="m476-80 182-480h84L924-80h-84l-43-122H603L560-80h-84Zm152-192h144l-72-204-72
+                 204Zm-374-48q-66 0-123.5-38.5T44-462l72-36q21 42 58
+                  70t79 28q38 0 62.5-23.5T340-480q0-33-23.5-56.5T260-560h-60v-80h60q25
+                   0 42.5-17.5T320-700q0-25-17-42.5T261-760q-23 0-41 15t-32 33l-63-49q26-32 60-55.5t77-23.5q57
+                    0 97.5 40.5T400-701q0 27-10 52.5T361-603q10 10 18.5 20.5T396-560h124v-200h-80v-80h240v80h-80v116l-61
+                     164H420v4q0 63-46 109.5T254-320Z" />
+                </svg>
+            </div>
+            <mat-menu #languageMenu="matMenu">
+                <button mat-menu-item (click)="switchLang('en');language='en'">English</button>
+                <button mat-menu-item (click)="switchLang('hi');language='hi'">हिन्दी</button>
+            </mat-menu>
+        </div>
+        <div class="header-cart-mob me-3 align-items-center" data-bs-toggle="offcanvas"
+            data-bs-target="#shoppingcartcanvas">
+            <!-- <span class="me-2 header-cart-price">₹{{totalPrice | number}}</span> -->
+            <mat-icon>shopping_cart</mat-icon>
+            <span class="position-absolute translate-middle badge badge-mob rounded-pill bg-danger">
+                {{productQuantity}}
+            </span>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" (click)="isCollapse = !isCollapse"
+            data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse menu-position justify-content-center mt-4" [class.show]="isCollapse"
+        id="navbarNav">
+        <ul class="navbar-nav ms-3">
+            <li class="nav-item" (click)="routeChange()">
+                <a class="nav-link custom-link" [class.active]="activeSection==='home'" [routerLink]="['']">{{"Home"
+                    |translate}}</a>
+            </li>
+            <li class="nav-item" (click)="routeChange()">
+                <a class="nav-link custom-link" [class.active]="activeSection==='about-us'"
+                    [routerLink]="['about-us']">{{"About Us" |translate}}</a>
+            </li>
+            <li class="nav-item" (click)="routeChange()">
+                <a class="nav-link custom-link" [class.active]="activeSection==='products'"
+                    [routerLink]="['products']">{{"Products" |translate}}</a>
+            </li>
+            <li class="nav-item" (click)="routeChange()" *ngIf="isLoggedIn">
+                <a class="nav-link custom-link" [class.active]="activeSection==='orders'"
+                    [routerLink]="['orders']">{{"Orders" |translate}}</a>
+            </li>
+            <li class="nav-item login-nav" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
+                <a class="nav-link custom-link">{{"Login" |translate}}</a>
+            </li>
+            <li class="nav-item login-nav" (click)="logout()" *ngIf="isLoggedIn">
+                <a class="nav-link custom-link">{{"Logout" |translate}}</a>
+            </li>
+        </ul>
     </div>
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="shoppingcartcanvas" aria-labelledby="shoppingcartcanvasLabel">

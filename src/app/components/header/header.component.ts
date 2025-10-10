@@ -12,10 +12,12 @@ import { environment } from '../../environments/environment';
 import { TranslationService } from '../../services/translation.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterModule, MatIconModule, MatDialogModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule],
+  imports: [RouterModule, MatIconModule, MatDialogModule, CommonModule, ReactiveFormsModule, FormsModule, TranslateModule, MatMenuModule, MatButtonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
