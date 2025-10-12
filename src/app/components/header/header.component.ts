@@ -25,12 +25,13 @@ export class HeaderComponent implements OnInit {
   isCollapse: boolean = false;
   activeSection: string = 'home';
   cartItems: any[] = [];
-  isLoggedIn: boolean = false;
+  isLoggedIn: any = false;
   totalPrice: number = 0;
   productQuantity: number = 0;
   baseUrl = environment.API_URL;
   whatsappNumber = 8452006089;
   language: string = 'en';
+  userData: any;
   constructor(private eRef: ElementRef,
     private router: Router,
     private dialog: MatDialog,
@@ -57,6 +58,8 @@ export class HeaderComponent implements OnInit {
       else {
         this.isLoggedIn = false;
       }
+      let data: any = this.storageService.getItem('userData');
+      this.userData = JSON.parse(data);
     })
     this.cartService.cartUpdate$.subscribe(res => {
       if (res) {
@@ -97,6 +100,9 @@ export class HeaderComponent implements OnInit {
         break;
       case '/orders':
         this.activeSection = 'orders';
+        break;
+      case '/admin':
+        this.activeSection = 'admin';
         break;
       default:
         this.activeSection = '';
