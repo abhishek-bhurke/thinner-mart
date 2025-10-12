@@ -1,7 +1,7 @@
 export const banner = [
     {
         // src: '../../../assets/banners/desktop_banner_1.png'
-        src: '../../../assets/banners/desktop_banner_1_1.png'
+        src: '../../../assets/banners/desktop_banner_1_new.png'
     },
     {
         src: '../../../assets/banners/desktop_banner_2.png'
@@ -23,7 +23,7 @@ export const banner = [
 export const mobBanner = [
     {
         // src: '../../../assets/banners/mobile_banner_1.png'
-        src: '../../../assets/banners/mobile_banner_1_1.png'
+        src: '../../../assets/banners/mobile_banner_1_new.png'
     },
     {
         src: '../../../assets/banners/mobile_banner_2.png'
