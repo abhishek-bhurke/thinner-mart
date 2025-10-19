@@ -38,9 +38,10 @@
                 <div class="card-body">
                     <div *ngFor="let productImage of productImageList">
                         <span class="p-2 d-flex align-items-center justify-content-between">
+                            <div></div>
                             <img src="{{productImage.objectURL ? productImage.objectURL.changingThisBreaksApplicationSecurity : baseUrl+'/'+productImage.name}}"
                                 width="100">
-                            <span>{{productImage.name}}</span>
+                            <!-- <span>{{productImage.name}}</span> -->
                             <mat-icon class="ms-1 kt-pointer" (click)="cancelProductImage()">cancel</mat-icon>
                         </span>
                     </div>
@@ -89,24 +90,27 @@
                             <label class="h6">Variant Image</label>
                             <p-fileupload name="demo[]" (onSelect)="onUploadVariant($event,i)" [multiple]="false"
                                 accept="image/*" maxFileSize="1000000" mode="basic" [showUploadButton]="false"
-                                [showCancelButton]="false" *ngIf="!variantImages[i]">
+                                [showCancelButton]="false" *ngIf="variantImages[i].length==0;else elseblock">
                                 <ng-template #empty>
                                     <div>Drag and drop files to here to upload.</div>
                                 </ng-template>
                             </p-fileupload>
-                            <div class="card" *ngIf="variantImages[i]">
-                                <div class="card-body">
-                                    <div *ngFor="let productImage of variantImages[i]">
-                                        <span class="p-2 d-flex align-items-center justify-content-between">
-                                            <img src="{{productImage.objectURL ? productImage.objectURL.changingThisBreaksApplicationSecurity : baseUrl+'/'+productImage.name}}"
-                                                width="100">
-                                            <span>{{productImage.name}}</span>
-                                            <mat-icon class="ms-1 kt-pointer"
-                                                (click)="cancelVariantImage(i)">cancel</mat-icon>
-                                        </span>
+                            <ng-template #elseblock>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div *ngFor="let productImage of variantImages[i]">
+                                            <span class="p-2 d-flex align-items-center justify-content-between">
+                                                <div></div>
+                                                <img src="{{productImage.objectURL ? productImage.objectURL.changingThisBreaksApplicationSecurity : baseUrl+'/'+productImage.name}}"
+                                                    width="100">
+                                                <!-- <span>{{productImage.name}}</span> -->
+                                                <mat-icon class="ms-1 kt-pointer"
+                                                    (click)="cancelVariantImage(i)">cancel</mat-icon>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </ng-template>
                         </div>
                         <div class="col-md-12 mb-3">
                             <button class="btn btn-outline-danger" (click)="removeVariety(i)">{{"Remove Variant" |

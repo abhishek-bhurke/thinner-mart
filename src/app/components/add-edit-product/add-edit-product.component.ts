@@ -57,10 +57,12 @@ export class AddEditProductComponent {
         'name': this.productData.name,
         'description': this.productData.description
       })
-      this.urlToBlob(this.productData.image)
+      let image = this.productData.image.replace('/var/TNMart/Deployable/wwwroot', '')
+      this.urlToBlob(image)
       this.productData?.variety.forEach((ele: any, index: any) => {
         this.getControls.push(this.fb.group(ele));
-        this.urlToBlobVariant(ele.image, index)
+        let image = ele.image.replace('/var/TNMart/Deployable/wwwroot', '')
+        this.urlToBlobVariant(image, index)
       });
       this.productData?.application.forEach((ele: any) => {
         this.getApplicationControls.push(this.fb.group(ele));
