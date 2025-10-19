@@ -90,7 +90,7 @@
                             <label class="h6">Variant Image</label>
                             <p-fileupload name="demo[]" (onSelect)="onUploadVariant($event,i)" [multiple]="false"
                                 accept="image/*" maxFileSize="1000000" mode="basic" [showUploadButton]="false"
-                                [showCancelButton]="false" *ngIf="variantImages[i].length==0;else elseblock">
+                                [showCancelButton]="false" *ngIf="!variantImages[i];else elseblock">
                                 <ng-template #empty>
                                     <div>Drag and drop files to here to upload.</div>
                                 </ng-template>
