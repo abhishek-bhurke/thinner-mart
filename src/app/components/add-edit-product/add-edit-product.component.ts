@@ -141,7 +141,6 @@ export class AddEditProductComponent {
   }
   removeVariety(index: any) {
     (this.f['variety'] as FormArray).removeAt(index);
-    this.variantImages[index] = null;
   }
   removeMethod(index: any, name: string) {
     (this.f[name] as FormArray).removeAt(index);
@@ -284,7 +283,7 @@ export class AddEditProductComponent {
     this.productImageList = [];
   }
   cancelVariantImage(index: any) {
-    this.variantImages[index] = [];
+    this.variantImages[index] = null;
   }
   urlToBlob(url: string) {
     let imageUrl = '/' + url;
