@@ -45,6 +45,10 @@
                 <a class="nav-link custom-link" [class.active]="activeSection==='orders'"
                     [routerLink]="['orders']">{{"Orders" |translate}}</a>
             </li>
+            <li class="nav-item" (click)="routeChange()" *ngIf="userData?.isAdmin">
+                <a class="nav-link custom-link" [class.active]="activeSection==='admin'"
+                    [routerLink]="['admin']">{{"Admin" |translate}}</a>
+            </li>
             <li class="nav-item login-nav" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
                 <a class="nav-link custom-link">{{"Login" |translate}}</a>
             </li>
@@ -131,6 +135,10 @@
             <li class="nav-item" (click)="routeChange()" *ngIf="isLoggedIn">
                 <a class="nav-link custom-link" [class.active]="activeSection==='orders'"
                     [routerLink]="['orders']">{{"Orders" |translate}}</a>
+            </li>
+            <li class="nav-item" (click)="routeChange()" *ngIf="userData?.isAdmin">
+                <a class="nav-link custom-link" [class.active]="activeSection==='admin'"
+                    [routerLink]="['admin']">{{"Admin" |translate}}</a>
             </li>
             <li class="nav-item login-nav" (click)="openLoginDialog()" *ngIf="!isLoggedIn">
                 <a class="nav-link custom-link">{{"Login" |translate}}</a>

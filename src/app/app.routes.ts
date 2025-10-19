@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth.guard';
+import { adminGuard } from './admin.guard';
 
 export const routes: Routes = [
     { path: '', loadComponent: () => import('./components/home/home.component').then(mod => mod.HomeComponent) },
@@ -15,5 +16,11 @@ export const routes: Routes = [
     { path: 'checkout', loadComponent: () => import('./components/checkout/checkout.component').then(mod => mod.CheckoutComponent), canActivate: [authGuard] },
     { path: 'orders', loadComponent: () => import('./components/orders/orders.component').then(mod => mod.OrdersComponent), canActivate: [authGuard] },
     { path: 'order-details', loadComponent: () => import('./components/orders/order-details/order-details.component').then(mod => mod.OrderDetailsComponent), canActivate: [authGuard] },
+    { path: 'admin', loadComponent: () => import('./components/admin/admin.component').then(mod => mod.AdminComponent), canActivate: [adminGuard] },
+    { path: 'product-list', loadComponent: () => import('./components/product-list/product-list.component').then(mod => mod.ProductListComponent), canActivate: [adminGuard] },
+    { path: 'customer-list', loadComponent: () => import('./components/customer-list/customer-list.component').then(mod => mod.CustomerListComponent), canActivate: [adminGuard] },
+    { path: 'coupons-list', loadComponent: () => import('./components/coupons-list/coupons-list.component').then(mod => mod.CouponsListComponent), canActivate: [adminGuard] },
+    { path: 'add-edit-product', loadComponent: () => import('./components/add-edit-product/add-edit-product.component').then(mod => mod.AddEditProductComponent), canActivate: [adminGuard] },
+    { path: 'add-edit-coupon', loadComponent: () => import('./components/add-edit-coupon/add-edit-coupon.component').then(mod => mod.AddEditCouponComponent), canActivate: [adminGuard] },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

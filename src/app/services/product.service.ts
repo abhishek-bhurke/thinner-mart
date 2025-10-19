@@ -23,4 +23,7 @@ export class ProductService {
   deleteProduct(data: any): Observable<any> {
     return this.http.post(`/api/Product/Delete`, data);
   }
+  getCategories(): Observable<any> {
+    return this.http.post(`/api/Category/GetAll`, '');
+  }
 }

@@ -1,0 +1,21 @@
+@use '../../../colors.scss' as *;
+
+.coupons-list-section {
+    padding: 0% 7%;
+}
+
+::ng-deep.mat-column-description {
+    width: 35% !important;
+}
+
+.btn-login {
+    border: 1px solid $heading-color;
+    background-color: transparent;
+    color: $heading-color;
+    padding: 10px 30px 10px 30px;
+}
+
+.btn-login:hover {
+    color: #fff;
+    background-color: $heading-color;
+}

@@ -1,0 +1,232 @@
+<div class="add-edit-product-section">
+    <h4 class="heading-text mb-2">{{this.id ? ("Update Product" | translate) : ("Add Product" | translate)}}</h4>
+    <form [formGroup]="productForm">
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field class="w-100">
+                    <mat-label>{{"Category" | translate}}</mat-label>
+                    <mat-select formControlName="category">
+                        @for (category of categoryList; track category) {
+                        <mat-option [value]="category.id">{{category.name}}</mat-option>
+                        }
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{"Product Name" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Product Name' | translate" formControlName="name">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field class="w-100">
+                    <mat-label>{{"Description" | translate}}</mat-label>
+                    <textarea matInput cdkTextareaAutosize formControlName="description"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-md-4 mb-2">
+            <label class="h6">Product Image</label>
+            <p-fileupload name="demo[]" (onSelect)="onUpload($event)" [multiple]="false" accept="image/*"
+                maxFileSize="1000000" mode="basic" [showUploadButton]="false" [showCancelButton]="false"
+                *ngIf="productImageList.length==0">
+                <ng-template #empty>
+                    <div>Drag and drop files to here to upload.</div>
+                </ng-template>
+            </p-fileupload>
+            <div class="card" *ngIf="productImageList.length>0">
+                <div class="card-body">
+                    <div *ngFor="let productImage of productImageList">
+                        <span class="p-2 d-flex align-items-center justify-content-between">
+                            <img src="{{productImage.objectURL ? productImage.objectURL.changingThisBreaksApplicationSecurity : baseUrl+'/'+productImage.name}}"
+                                width="100">
+                            <span>{{productImage.name}}</span>
+                            <mat-icon class="ms-1 kt-pointer" (click)="cancelProductImage()">cancel</mat-icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="heading-text">{{"Product Variant" | translate}}</h5>
+            <button class="btn btn-login" (click)="addVariety()">{{"Add Variant" | translate}}</button>
+        </div>
+        <div formArrayName="variety">
+            <div *ngFor="let row of getControls.controls;let i = index;">
+                <div [formGroupName]="i">
+                    <div class="border-dotted mb-4 pt-4 row">
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{"Size" | translate}}</mat-label>
+                                <input matInput [placeholder]="'Size' | translate" formControlName="size">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{"Unit" | translate}}</mat-label>
+                                <input matInput [placeholder]="'Unit' | translate" formControlName="unit">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{"Price" | translate}}</mat-label>
+                                <input matInput [placeholder]="'Price' | translate" formControlName="price">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{"Stock" | translate}}</mat-label>
+                                <input matInput [placeholder]="'Stock' | translate" formControlName="stock">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{"Quantity" | translate}}</mat-label>
+                                <input matInput [placeholder]="'Quantity' | translate" formControlName="qty">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-4 mb-2">
+                            <label class="h6">Variant Image</label>
+                            <p-fileupload name="demo[]" (onSelect)="onUploadVariant($event,i)" [multiple]="false"
+                                accept="image/*" maxFileSize="1000000" mode="basic" [showUploadButton]="false"
+                                [showCancelButton]="false" *ngIf="!variantImages[i]">
+                                <ng-template #empty>
+                                    <div>Drag and drop files to here to upload.</div>
+                                </ng-template>
+                            </p-fileupload>
+                            <div class="card" *ngIf="variantImages[i]">
+                                <div class="card-body">
+                                    <div *ngFor="let productImage of variantImages[i]">
+                                        <span class="p-2 d-flex align-items-center justify-content-between">
+                                            <img src="{{productImage.objectURL ? productImage.objectURL.changingThisBreaksApplicationSecurity : baseUrl+'/'+productImage.name}}"
+                                                width="100">
+                                            <span>{{productImage.name}}</span>
+                                            <mat-icon class="ms-1 kt-pointer"
+                                                (click)="cancelVariantImage(i)">cancel</mat-icon>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <button class="btn btn-outline-danger" (click)="removeVariety(i)">{{"Remove Variant" |
+                                translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="heading-text">{{"Application" | translate}}</h5>
+            <button class="btn btn-login" (click)="addMethod('application')">{{"Add Application" | translate}}</button>
+        </div>
+        <div formArrayName="application">
+            <div *ngFor="let row of getApplicationControls.controls;let i = index;">
+                <div [formGroupName]="i">
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="outline" class="w-100 me-3">
+                            <mat-label>{{"Description" | translate}}</mat-label>
+                            <input matInput [placeholder]="'Description' | translate" formControlName="description">
+                        </mat-form-field>
+                        <div>
+                            <button class="btn btn-outline-danger" (click)="removeMethod(i,'application')">
+                                {{"Remove" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="heading-text">{{"Application Method" | translate}}</h5>
+            <button class="btn btn-login" (click)="addMethod('applicationMethod')">{{"Add Application Method" |
+                translate}}</button>
+        </div>
+        <div formArrayName="applicationMethod">
+            <div *ngFor="let row of getApplicationMethodControls.controls;let i = index;">
+                <div [formGroupName]="i">
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="outline" class="w-100 me-3">
+                            <mat-label>{{"Description" | translate}}</mat-label>
+                            <input matInput [placeholder]="'Description' | translate" formControlName="description">
+                        </mat-form-field>
+                        <div>
+                            <button class="btn btn-outline-danger" (click)="removeMethod(i,'applicationMethod')">
+                                {{"Remove" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="heading-text">{{"Benefit" | translate}}</h5>
+            <button class="btn btn-login" (click)="addMethod('benefit')">{{"Add Benefit" | translate}}</button>
+        </div>
+        <div formArrayName="benefit">
+            <div *ngFor="let row of getBenefitControls.controls;let i = index;">
+                <div [formGroupName]="i">
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="outline" class="w-100 me-3">
+                            <mat-label>{{"Description" | translate}}</mat-label>
+                            <input matInput [placeholder]="'Description' | translate" formControlName="description">
+                        </mat-form-field>
+                        <div>
+                            <button class="btn btn-outline-danger" (click)="removeMethod(i,'benefit')">
+                                {{"Remove" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="heading-text">{{"Storage & Handling" | translate}}</h5>
+            <button class="btn btn-login" (click)="addMethod('storageHandeling')">{{"Add Storage & Handling" |
+                translate}}</button>
+        </div>
+        <div formArrayName="storageHandeling">
+            <div *ngFor="let row of getStorageHandelingControls.controls;let i = index;">
+                <div [formGroupName]="i">
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="outline" class="w-100 me-3">
+                            <mat-label>{{"Description" | translate}}</mat-label>
+                            <input matInput [placeholder]="'Description' | translate" formControlName="description">
+                        </mat-form-field>
+                        <div>
+                            <button class="btn btn-outline-danger" (click)="removeMethod(i,'storageHandeling')">
+                                {{"Remove" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-between mb-3">
+            <h5 class="heading-text">{{"Precaution" | translate}}</h5>
+            <button class="btn btn-login" (click)="addMethod('precaution')">{{"Add Precaution" | translate}}</button>
+        </div>
+        <div formArrayName="precaution">
+            <div *ngFor="let row of getPrecautionControls.controls;let i = index;">
+                <div [formGroupName]="i">
+                    <div class="d-flex justify-content-between">
+                        <mat-form-field appearance="outline" class="w-100 me-3">
+                            <mat-label>{{"Description" | translate}}</mat-label>
+                            <input matInput [placeholder]="'Description' | translate" formControlName="description">
+                        </mat-form-field>
+                        <div>
+                            <button class="btn btn-outline-danger" (click)="removeMethod(i,'precaution')">
+                                {{"Remove" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button class="btn btn-login me-2" (click)="cancel()">
+            {{"Cancel" | translate}}</button>
+        <button class="btn btn-login" (click)="addUpdateProduct()">
+            {{this.id ? ("Update Product" | translate) : ("Add Product" | translate)}}</button>
+    </form>
+</div>

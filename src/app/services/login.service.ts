@@ -13,6 +13,11 @@ export class LoginService {
   isLoggedIn() {
     return !!this.storageService.getItem('token');
   }
+  isAdmin() {
+    let data: any = this.storageService.getItem('userData');
+    let userData = JSON.parse(data);
+    return userData?.isAdmin ? true : false
+  }
   login(data: any): Observable<any> {
     return this.http.post(`/api/Auth/Login`, data);
   }

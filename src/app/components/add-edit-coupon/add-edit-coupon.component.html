@@ -1,0 +1,29 @@
+<div class="add-edit-coupon-section">
+    <h4 class="heading-text mb-2">{{this.id ? ("Update Coupon" | translate) : ("Add Coupon" | translate)}}</h4>
+    <form [formGroup]="couponForm">
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{"Coupon Code" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Coupon Code' | translate" formControlName="code">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{"Percentage" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Percentage' | translate" formControlName="percentage">
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{"Minimum Amount" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Minimum Amount' | translate" formControlName="minimumAmount">
+                </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-login" (click)="addUpdateCoupon()">
+                    {{this.id ? ("Update Coupon" | translate) : ("Add Coupon" | translate)}}</button>
+            </div>
+        </div>
+    </form>
+</div>

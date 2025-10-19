@@ -1,0 +1,30 @@
+@use '../../../colors.scss' as *;
+
+.add-edit-product-section {
+    padding: 2% 7%;
+}
+
+.btn-login {
+    border: 1px solid $heading-color;
+    background-color: transparent;
+    color: $heading-color;
+    padding: 10px 30px 10px 30px;
+}
+
+.btn-login:hover {
+    color: #fff;
+    background-color: $heading-color;
+}
+
+.btn-outline-danger {
+    padding: 10px 30px 10px 30px;
+}
+
+::ng-deep.p-fileupload-advanced {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+::ng-deep.p-fileupload-basic {
+    justify-content: start !important;
+}
