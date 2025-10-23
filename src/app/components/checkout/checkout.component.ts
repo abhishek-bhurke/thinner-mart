@@ -37,6 +37,7 @@ export class CheckoutComponent {
   discountedTotal: number = 0;
   priceBeforeDiscount: number = 0;
   userId: any;
+  verifyPin: boolean = false;
   constructor(private storageService: StorageService,
     private loginService: LoginService,
     private cartService: CartService,
@@ -51,7 +52,7 @@ export class CheckoutComponent {
     this.createCheckoutForm();
     this.getUserDetails();
     let userData: any = this.storageService.getItem('userData');
-    this.userId = JSON.parse(userData)
+    this.userId = JSON.parse(userData);
   }
   getCart() {
     this.cartService.getAllCart().subscribe(res => {
@@ -88,7 +89,7 @@ export class CheckoutComponent {
       'address1': ['', Validators.required],
       'address2': [''],
       'city': ['', Validators.required],
-      'state': ['', Validators.required],
+      'state': [{ value: '', disabled: true }, Validators.required],
       'postalCode': ['', Validators.required],
       'mobile': ['', Validators.required],
       'note': [''],
@@ -143,8 +144,9 @@ export class CheckoutComponent {
               })
             }
             else {
-              this.advancedAmount = this.total;
-              this.placeOrderFunc(false);
+              // this.advancedAmount = this.total;
+              this.toastrService.error('Minimum order value must be ₹10,999.')
+              // this.placeOrderFunc(false);
             }
           }
           else {
@@ -264,5 +266,19 @@ export class CheckoutComponent {
     this.discountedTotal = 0;
     this.couponCode = '';
     this.getCart();
+  }
+  verifyPincode() {
+    fetch(`https://api.worldpostallocations.com/pincode?postalcode=${this.checkoutForm.controls['postalCode'].value}&countrycode=IN`).then(async res => {
+      let data = await res.json();
+      if (data.result.length) {
+        this.checkoutForm.controls['city'].setValue(data.result[0].district);
+        this.checkoutForm.controls['state'].setValue(data.result[0].state);
+        this.verifyPin = !this.verifyPin;
+        this.toastrService.success('Pincode verified successfully.');
+      }
+      else {
+        this.toastrService.error('Please verify again.');
+      }
+    })
   }
 }
