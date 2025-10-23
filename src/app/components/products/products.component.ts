@@ -26,6 +26,12 @@ export class ProductsComponent {
   getAllProducts() {
     this.productService.getAllProducts().subscribe(res => {
       this.productsList = res.data;
+      this.productsList.forEach((ele: any) => {
+        if (ele.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+          let image = ele.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+          ele.image = image;
+        }
+      })
     })
   }
 }
