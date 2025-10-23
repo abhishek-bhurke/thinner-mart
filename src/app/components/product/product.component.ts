@@ -100,7 +100,17 @@ export class ProductComponent implements OnInit {
       id: this.id
     }
     this.productService.getProductById(data).subscribe(res => {
-      this.product = res.data
+      this.product = res.data;
+      if (this.product.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+        let image = this.product.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+        this.product.image = image;
+      }
+      this.product.variety?.forEach((ele: any) => {
+        if (ele.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+          let image = ele.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+          ele.image = image;
+        }
+      })
     })
   }
   addToCart() {
@@ -149,7 +159,13 @@ export class ProductComponent implements OnInit {
     this.productService.getAllProducts().subscribe(res => {
       this.productsList = res.data;
       let filteredProducts = this.productsList.filter(item => item.id != this.id);
-      this.productsList = filteredProducts
+      this.productsList = filteredProducts;
+      this.productsList.forEach((ele: any) => {
+        if (ele.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+          let image = ele.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+          ele.image = image;
+        }
+      })
     })
   }
 }
