@@ -64,6 +64,12 @@
                     </div>
                     <div class="col-md-12">
                         <mat-form-field appearance="outline" class="w-100 mt-2">
+                            <mat-label>{{"State" | translate}}</mat-label>
+                            <input matInput [placeholder]="'State' | translate" formControlName="state">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-12">
+                        <mat-form-field appearance="outline" class="w-100 mt-2">
                             <mat-label>{{"Mobile Number" | translate}}</mat-label>
                             <input matInput [placeholder]="'Mobile Number' | translate" formControlName="mobile">
                         </mat-form-field>

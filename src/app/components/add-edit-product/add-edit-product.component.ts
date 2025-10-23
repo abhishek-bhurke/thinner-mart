@@ -183,7 +183,7 @@ export class AddEditProductComponent {
         formData.append(`Variety[${index}].Price`, item.price.toString());
         formData.append(`Variety[${index}].Stock`, item.stock.toString());
         formData.append(`Variety[${index}].Qty`, item.qty.toString());
-        formData.append(`Variety[${index}].Image`, this.variantImages[index]);
+        formData.append(`Variety[${index}].Image`, this.variantImages[index][0]);
 
         // if (item.imageFiles) {
         //   for (let file of item.imageFiles) {
@@ -241,7 +241,7 @@ export class AddEditProductComponent {
         formData.append(`Variety[${index}].Price`, item.price.toString());
         formData.append(`Variety[${index}].Stock`, item.stock.toString());
         formData.append(`Variety[${index}].Qty`, item.qty.toString());
-        formData.append(`Variety[${index}].Image`, this.variantImages[index]);
+        formData.append(`Variety[${index}].Image`, this.variantImages[index][0]);
 
         // if (item.imageFiles) {
         //   for (let file of item.imageFiles) {

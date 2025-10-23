@@ -84,6 +84,7 @@ export class CheckoutComponent {
       'address1': ['', Validators.required],
       'address2': [''],
       'city': ['', Validators.required],
+      'state': ['', Validators.required],
       'postalCode': ['', Validators.required],
       'mobile': ['', Validators.required],
       'note': [''],
@@ -175,7 +176,9 @@ export class CheckoutComponent {
       "gstNumber": this.checkoutForm.controls['gstNumber'].value ? this.checkoutForm.controls['gstNumber'].value : '',
       "totalBeforeDiscount": this.priceBeforeDiscount,
       "couponCode": this.couponCode,
-      "discountAmount": this.discountedTotal
+      "discountAmount": this.discountedTotal,
+      "city": this.checkoutForm.controls['city'].value,
+      "state": this.checkoutForm.controls['state'].value
     }
     this.orderService.addOrder(data).subscribe(res => {
       if (data.method == 'online' || isAdvance) {
@@ -228,6 +231,7 @@ export class CheckoutComponent {
       this.checkoutForm.controls['address1'].setValue(res.data.address1)
       this.checkoutForm.controls['address2'].setValue(res.data.address2)
       this.checkoutForm.controls['city'].setValue(res.data.city)
+      this.checkoutForm.controls['state'].setValue(res.data.state)
       this.checkoutForm.controls['postalCode'].setValue(res.data.pincode)
       this.checkoutForm.controls['mobile'].setValue(res.data.mobileNumber)
     })
