@@ -63,6 +63,10 @@ export class CartComponent implements OnInit {
         this.productList.forEach((ele: any) => {
           let productprice = 0
           ele.variant?.forEach((ele1: any) => {
+            if (ele1.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+              let image = ele1.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+              ele1.image = image;
+            }
             productprice += ele1.qty * ele1.price;
           })
           this.purchaseTotal += ele.productQty * productprice;
@@ -76,6 +80,10 @@ export class CartComponent implements OnInit {
       this.productList.forEach((ele: any) => {
         let productprice = 0
         ele.variant?.forEach((ele1: any) => {
+          if (ele1.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+            let image = ele1.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+            ele1.image = image;
+          }
           productprice += ele1.qty * ele1.price;
         })
         this.purchaseTotal += ele.productQty * productprice;

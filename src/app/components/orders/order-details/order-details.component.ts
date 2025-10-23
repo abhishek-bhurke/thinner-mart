@@ -47,6 +47,10 @@ export class OrderDetailsComponent implements OnInit {
       this.orderData = res.data;
       this.totalPrice = 0;
       this.orderData.orderItems.forEach((ele: any) => {
+        if (ele.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+          let image = ele.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+          ele.image = image;
+        }
         let productprice = 0
         productprice += ele.quantity * ele.price;
         this.totalPrice += ele.productQty * productprice;
@@ -61,6 +65,10 @@ export class OrderDetailsComponent implements OnInit {
       this.orderData = res.data;
       this.totalPrice = 0;
       this.orderData.orderItems.forEach((ele: any) => {
+        if (ele.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+          let image = ele.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+          ele.image = image;
+        }
         let productprice = 0
         productprice += ele.quantity * ele.price;
         this.totalPrice += ele.productQty * productprice;

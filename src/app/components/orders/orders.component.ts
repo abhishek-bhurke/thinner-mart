@@ -37,11 +37,27 @@ export class OrdersComponent {
   getAllOrders() {
     this.orderService.getAllOrders().subscribe(res => {
       this.ordersList = res.data;
+      this.ordersList.forEach((ele: any) => {
+        ele.orderItems.forEach((ele1: any) => {
+          if (ele1.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+            let image = ele1.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+            ele1.image = image;
+          }
+        })
+      })
     })
   }
   getAdminOrders() {
     this.adminService.getAllAdminOrders().subscribe(res => {
       this.ordersList = res.data;
+      this.ordersList.forEach((ele: any) => {
+        ele.orderItems.forEach((ele1: any) => {
+          if (ele1.image.includes('/var/TNMart/Deployable/wwwroot/')) {
+            let image = ele1.image.replace('/var/TNMart/Deployable/wwwroot/', '');
+            ele1.image = image;
+          }
+        })
+      })
     })
   }
   goToProducts() {
