@@ -1,0 +1,22 @@
+<div class="invoice-section">
+    <h4 class="heading-text mb-2">{{"Invoice" | translate}}</h4>
+
+    <div class="mb-4">
+        <label class="fw-bold">Current Invoice Number :</label>
+        {{orderNumber.orderNumber+'/'+orderNumber.orderFormat+'/'+orderNumber.financialYear}}
+    </div>
+    <form [formGroup]="invoiceForm">
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>{{"Order Number" | translate}}</mat-label>
+                    <input matInput [placeholder]="'Order Number' | translate" formControlName="orderNumber">
+                </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-login" (click)="updateInvoice()">
+                    {{"Update" | translate}}</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -22,5 +22,6 @@ export const routes: Routes = [
     { path: 'coupons-list', loadComponent: () => import('./components/coupons-list/coupons-list.component').then(mod => mod.CouponsListComponent), canActivate: [adminGuard] },
     { path: 'add-edit-product', loadComponent: () => import('./components/add-edit-product/add-edit-product.component').then(mod => mod.AddEditProductComponent), canActivate: [adminGuard] },
     { path: 'add-edit-coupon', loadComponent: () => import('./components/add-edit-coupon/add-edit-coupon.component').then(mod => mod.AddEditCouponComponent), canActivate: [adminGuard] },
+    { path: 'invoice', loadComponent: () => import('./components/invoice/invoice.component').then(mod => mod.InvoiceComponent), canActivate: [adminGuard] },
     { path: '**', redirectTo: '', pathMatch: 'full' }
 ];

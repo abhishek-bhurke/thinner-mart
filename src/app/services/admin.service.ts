@@ -19,4 +19,10 @@ export class AdminService {
   updateOrderStatus(data: any): Observable<any> {
     return this.http.post(`/api/Admin/UpdateOrderStatus`, data);
   }
+  updateOrderNumber(data: any): Observable<any> {
+    return this.http.post(`/api/Admin/UpdateOrderNumber`, data);
+  }
+  getOrderNumber(): Observable<any> {
+    return this.http.post(`/api/Admin/GetOrderNumber`, '');
+  }
 }
