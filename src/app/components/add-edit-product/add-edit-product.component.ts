@@ -106,7 +106,7 @@ export class AddEditProductComponent {
       "stock": [''],
       "image": [''],
       "qty": [''],
-      // "outOfStock": false,
+      "outOfStock": false,
       "imagePath": ['']
     });
   }
@@ -191,7 +191,7 @@ export class AddEditProductComponent {
         formData.append(`Variety[${index}].Price`, item.price.toString());
         formData.append(`Variety[${index}].Stock`, item.stock.toString());
         formData.append(`Variety[${index}].Qty`, item.qty.toString());
-        // formData.append(`Variety[${index}].OutOfStock`, item.outOfStock.toString());
+        formData.append(`Variety[${index}].OutOfStock`, item.outOfStock.toString());
         formData.append(`Variety[${index}].ImagePath`, item.imagePath.toString());
         formData.append(`Variety[${index}].Image`, this.variantImages[index][0]);
 
@@ -253,7 +253,7 @@ export class AddEditProductComponent {
         formData.append(`Variety[${index}].Price`, item.price.toString());
         formData.append(`Variety[${index}].Stock`, item.stock.toString());
         formData.append(`Variety[${index}].Qty`, item.qty.toString());
-        // formData.append(`Variety[${index}].OutOfStock`, item.outOfStock.toString());
+        formData.append(`Variety[${index}].OutOfStock`, item.outOfStock.toString());
         formData.append(`Variety[${index}].ImagePath`, item.imagePath.toString());
         formData.append(`Variety[${index}].Image`, this.variantImages[index][0]);
 

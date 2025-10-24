@@ -25,9 +25,11 @@
                 <div class="fs-6">Size Options:</div>
                 <div class="sizes mt-2">
                     <div class="size-box" *ngFor="let size of product?.variety; index as i"
-                        [class.selected]="i === selectedIndex" (click)="selectSize(i)">
+                        [class.selected]="i === selectedIndex" [class.add-to-cart-disable]="size.outOfStock"
+                        (click)="selectSize(i)">
                         <div class="label">{{ size.size }} {{size.unit}}</div>
-                        <div class="price">₹{{ size.price | number}}</div>
+                        <div class="price" *ngIf="!size?.outOfStock">₹{{ size.price | number}}</div>
+                        <div class="text-danger out-of-stock" *ngIf="size?.outOfStock">Out of Stock</div>
                     </div>
                 </div>
             </div>
@@ -37,7 +39,7 @@
             <div class="quantity-wrapper mt-2">
                 <div class="fs-6">Quantity:</div>
                 <p-inputnumber [(ngModel)]="quantity" [showButtons]="true" buttonLayout="horizontal"
-                    [disabled]="product.category=='Sample'" inputId="horizontal" spinnerMode="horizontal" [step]="1"
+                    [disabled]="product?.category=='Sample'" inputId="horizontal" spinnerMode="horizontal" [step]="1"
                     [min]="1" class="mt-2">
                     <ng-template #incrementbuttonicon>
                         <mat-icon class="text-black">add</mat-icon>

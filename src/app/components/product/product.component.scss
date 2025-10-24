@@ -122,6 +122,7 @@
 
 .add-to-cart-disable {
     cursor: not-allowed;
+    pointer-events: none;
     opacity: .6;
 }
 
@@ -251,4 +252,8 @@
 ::ng-deep.p-inputnumber-input {
     width: 55px !important;
     text-align: center !important;
+}
+
+.out-of-stock {
+    font-size: 12px;
 }
