@@ -86,6 +86,9 @@
                                 <input matInput [placeholder]="'Quantity' | translate" formControlName="qty">
                             </mat-form-field>
                         </div>
+                        <!-- <div class="col-md-4">
+                            <mat-checkbox class="" formControlName="outOfStock">Out of Stock</mat-checkbox>
+                        </div> -->
                         <div class="col-md-4 mb-2">
                             <label class="h6">Variant Image</label>
                             <p-fileupload name="demo[]" (onSelect)="onUploadVariant($event,i)" [multiple]="false"

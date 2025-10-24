@@ -14,10 +14,11 @@ import { ToastrService } from 'ngx-toastr';
 import { FileSelectEvent, FileUpload, UploadEvent } from 'primeng/fileupload';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-add-edit-product',
-  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatIconModule, TranslateModule, MatSelectModule, FileUpload],
+  imports: [CommonModule, MatFormFieldModule, MatInputModule, MatButtonModule, FormsModule, ReactiveFormsModule, MatDialogModule, MatIconModule, TranslateModule, MatSelectModule, FileUpload, MatCheckboxModule],
   templateUrl: './add-edit-product.component.html',
   styleUrl: './add-edit-product.component.scss'
 })
@@ -55,11 +56,13 @@ export class AddEditProductComponent {
       this.productForm.patchValue({
         'category': this.productData.categoryId,
         'name': this.productData.name,
-        'description': this.productData.description
+        'description': this.productData.description,
+        'imagePath': this.productData.image
       })
       let image = this.productData.image.replace('/var/TNMart/Deployable/wwwroot', '')
       this.urlToBlob(image)
       this.productData?.variety.forEach((ele: any, index: any) => {
+        ele.imagePath = ele.image;
         this.getControls.push(this.fb.group(ele));
         let image = ele.image.replace('/var/TNMart/Deployable/wwwroot', '')
         this.urlToBlobVariant(image, index)
@@ -92,6 +95,7 @@ export class AddEditProductComponent {
       benefit: this.fb.array([]),
       storageHandeling: this.fb.array([]),
       precaution: this.fb.array([]),
+      imagePath: ['']
     })
   }
   createVariety() {
@@ -101,7 +105,9 @@ export class AddEditProductComponent {
       "price": [''],
       "stock": [''],
       "image": [''],
-      "qty": ['']
+      "qty": [''],
+      // "outOfStock": false,
+      "imagePath": ['']
     });
   }
   createNewMethods() {
@@ -157,6 +163,7 @@ export class AddEditProductComponent {
         'name': this.productForm.controls['name'].value,
         'categoryId': this.productForm.controls['category'].value,
         'description': this.productForm.controls['description'].value,
+        'imagePath': this.productForm.controls['imagePath'].value,
         'variety': this.productForm.get('variety')?.value ? this.productForm.get('variety')?.value : [],
         'application': this.productForm.get('application')?.value ? this.productForm.get('application')?.value : [],
         'applicationMethod': this.productForm.get('applicationMethod')?.value ? this.productForm.get('applicationMethod')?.value : [],
@@ -169,6 +176,7 @@ export class AddEditProductComponent {
       formData.append('Name', data.name);
       formData.append('CategoryId', data.categoryId);
       formData.append('Description', data.description);
+      formData.append('ImagePath', data.imagePath);
       if (this.productImageList.length)
         formData.append('Image', this.productImageList[0]);
       // formData.append('Variety', JSON.stringify(data.variety));
@@ -183,6 +191,8 @@ export class AddEditProductComponent {
         formData.append(`Variety[${index}].Price`, item.price.toString());
         formData.append(`Variety[${index}].Stock`, item.stock.toString());
         formData.append(`Variety[${index}].Qty`, item.qty.toString());
+        // formData.append(`Variety[${index}].OutOfStock`, item.outOfStock.toString());
+        formData.append(`Variety[${index}].ImagePath`, item.imagePath.toString());
         formData.append(`Variety[${index}].Image`, this.variantImages[index][0]);
 
         // if (item.imageFiles) {
@@ -216,6 +226,7 @@ export class AddEditProductComponent {
         'name': this.productForm.controls['name'].value,
         'categoryId': this.productForm.controls['category'].value,
         'description': this.productForm.controls['description'].value,
+        'imagePath': this.productForm.controls['imagePath'].value,
         'variety': this.productForm.get('variety')?.value ? this.productForm.get('variety')?.value : [],
         'application': this.productForm.get('application')?.value ? this.productForm.get('application')?.value : [],
         'applicationMethod': this.productForm.get('applicationMethod')?.value ? this.productForm.get('applicationMethod')?.value : [],
@@ -227,6 +238,7 @@ export class AddEditProductComponent {
       formData.append('Name', data.name);
       formData.append('CategoryId', data.categoryId);
       formData.append('Description', data.description);
+      formData.append('ImagePath', data.imagePath);
       if (this.productImageList.length)
         formData.append('Image', this.productImageList[0]);
       // formData.append('Variety', JSON.stringify(data.variety));
@@ -241,6 +253,8 @@ export class AddEditProductComponent {
         formData.append(`Variety[${index}].Price`, item.price.toString());
         formData.append(`Variety[${index}].Stock`, item.stock.toString());
         formData.append(`Variety[${index}].Qty`, item.qty.toString());
+        // formData.append(`Variety[${index}].OutOfStock`, item.outOfStock.toString());
+        formData.append(`Variety[${index}].ImagePath`, item.imagePath.toString());
         formData.append(`Variety[${index}].Image`, this.variantImages[index][0]);
 
         // if (item.imageFiles) {
@@ -275,9 +289,11 @@ export class AddEditProductComponent {
   }
   onUpload(event: FileSelectEvent) {
     this.productImageList = event.currentFiles;
+    this.productForm.controls['imagePath'].setValue('')
   }
   onUploadVariant(event: FileSelectEvent, index: any) {
     this.variantImages[index] = event.currentFiles;
+    this.getControls.value[index].imagePath = '';
   }
   cancelProductImage() {
     this.productImageList = [];
