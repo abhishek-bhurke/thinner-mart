@@ -96,6 +96,7 @@
                             <option value="Pending">Pending</option>
                             <option value="Completed">Completed</option>
                             <option value="Failed">Failed</option>
+                            <option value="Refund">Refund</option>
                         </select>
                         <span *ngIf="!userData.isAdmin">
                             <span *ngIf="orderData?.paymentStatus=='Pending'"
@@ -104,18 +105,23 @@
                                 class="text-success">{{orderData.paymentStatus}}</span>
                             <span *ngIf="orderData?.paymentStatus=='Failed'"
                                 class="text-danger">{{orderData.paymentStatus}}</span>
+                            <span *ngIf="orderData?.paymentStatus=='Refund'"
+                                class="text-gray-600">{{orderData.paymentStatus}}</span>
                         </span>
                     </div>
                     <div>{{"Order Status" | translate}} :
                         <select [(ngModel)]="orderData.orderStatus" (ngModelChange)="changeOrderStatus()"
                             *ngIf="userData.isAdmin">
                             <option value="Processing">Processing</option>
+                            <option value="Accepted">Accepted</option>
                             <option value="Shipped">Shipped</option>
                             <option value="Delivered">Delivered</option>
                         </select>
                         <span *ngIf="!userData.isAdmin">
                             <span *ngIf="orderData?.orderStatus=='Processing'"
                                 class="text-warning">{{orderData.orderStatus}}</span>
+                            <span *ngIf="orderData?.orderStatus=='Accepted'"
+                                class="text-primary">{{orderData.orderStatus}}</span>
                             <span *ngIf="orderData?.orderStatus=='Shipped'"
                                 class="heading-color">{{orderData.orderStatus}}</span>
                             <span *ngIf="orderData?.orderStatus=='Delivered'"

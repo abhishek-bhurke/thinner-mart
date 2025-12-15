@@ -87,7 +87,7 @@ export class OrderDetailsComponent implements OnInit {
     })
   }
   redirectToWhatsapp() {
-    const url = `whatsapp://send?phone=${this.orderData?.mobile}`;
+    const url = `https://wa.me/${this.orderData?.mobile}`;
     window.open(url, '_blank');
   }
   redirectToMail() {

@@ -34,6 +34,8 @@
                                 class="heading-color">{{order.orderStatus}}</span>
                             <span *ngIf="order.orderStatus=='Delivered'"
                                 class="text-success">{{order.orderStatus}}</span>
+                            <span *ngIf="order.orderStatus=='Accepted'"
+                                class="text-primary">{{order.orderStatus}}</span>
                         </div>
                     </div>
                     <div class="mt-1">
@@ -44,6 +46,8 @@
                                 class="text-success">{{order.paymentStatus}}</span>
                             <span *ngIf="order.paymentStatus=='Failed'"
                                 class="text-danger">{{order.paymentStatus}}</span>
+                            <span *ngIf="order.paymentStatus=='Refund'"
+                                class="text-gray-600">{{order.paymentStatus}}</span>
                         </div>
                     </div>
                     <!-- <div class="fs-5 heading-color">{{product.productName}}</div>

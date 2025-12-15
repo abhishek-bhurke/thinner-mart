@@ -203,7 +203,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['products']);
   }
   redirectToWhatsapp() {
-    const url = `whatsapp://send?phone=${this.whatsappNumber}`;
+    const url = `https://wa.me/${this.whatsappNumber}`;
     window.open(url, '_blank');
   }
   redirectToFacebook() {
