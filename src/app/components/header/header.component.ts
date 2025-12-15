@@ -207,7 +207,7 @@ export class HeaderComponent implements OnInit {
     window.open(url, '_blank');
   }
   redirectToFacebook() {
-    const url = 'https://www.facebook.com/share/17F7i39mPY/';
+    const url = 'https://www.facebook.com/share/1AKLUyzj6V/';
     window.open(url, '_blank')
   }
   switchLang(event: any) {
