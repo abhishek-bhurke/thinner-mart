@@ -36,6 +36,8 @@
                                 class="text-success">{{order.orderStatus}}</span>
                             <span *ngIf="order.orderStatus=='Accepted'"
                                 class="text-primary">{{order.orderStatus}}</span>
+                            <span *ngIf="order.orderStatus=='Cancelled'"
+                                class="text-danger">{{order.orderStatus}}</span>
                         </div>
                     </div>
                     <div class="mt-1">

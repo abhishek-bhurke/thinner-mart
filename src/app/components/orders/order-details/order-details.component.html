@@ -116,6 +116,7 @@
                             <option value="Accepted">Accepted</option>
                             <option value="Shipped">Shipped</option>
                             <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
                         </select>
                         <span *ngIf="!userData.isAdmin">
                             <span *ngIf="orderData?.orderStatus=='Processing'"
@@ -126,6 +127,8 @@
                                 class="heading-color">{{orderData.orderStatus}}</span>
                             <span *ngIf="orderData?.orderStatus=='Delivered'"
                                 class="text-success">{{orderData.orderStatus}}</span>
+                            <span *ngIf="orderData?.orderStatus=='Cancelled'"
+                                class="text-danger">{{orderData.orderStatus}}</span>
                         </span>
                     </div>
                 </div>
