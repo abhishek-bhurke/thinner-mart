@@ -13,7 +13,7 @@ export const banner = [
         src: '../../../assets/banners/desktop_banner_4.png'
     },
     {
-        src: '../../../assets/banners/desktop_banner_5.png'
+        src: '../../../assets/banners/desktop_banner_5_new.png'
     },
     {
         src: '../../../assets/banners/desktop_banner_6.png'
@@ -35,16 +35,16 @@ export const mobBanner = [
         src: '../../../assets/banners/mobile_banner_4.png'
     },
     {
-        src: '../../../assets/banners/mobile_banner_5.png'
+        src: '../../../assets/banners/mobile_banner_5_new.png'
     },
     {
         src: '../../../assets/banners/mobile_banner_6.png'
     }
 ];
 
-export const benefitsBanner = '../../../assets/banners/process_banner.png';
+export const benefitsBanner = '../../../assets/banners/process_banner_new.png';
 
-export const mobBenefitsBanner = '../../../assets/banners/process_banner_mobile.png';
+export const mobBenefitsBanner = '../../../assets/banners/process_banner_new.png';
 
 export const topProducts = {
     product1: '../../../assets/images/top-product-1.png',
