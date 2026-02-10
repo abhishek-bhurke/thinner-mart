@@ -44,7 +44,7 @@ export const mobBanner = [
 
 export const benefitsBanner = '../../../assets/banners/process_banner_new.png';
 
-export const mobBenefitsBanner = '../../../assets/banners/process_banner_new.png';
+export const mobBenefitsBanner = '../../../assets/banners/process_banner_mobile_new.png';
 
 export const topProducts = {
     product1: '../../../assets/images/top-product-1.png',
