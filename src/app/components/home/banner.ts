@@ -55,7 +55,7 @@ export const topProducts = {
 export const featureItemImages = [
     {
         src: '../../../assets/images/free delivery.svg',
-        data: 'Free Delivery'
+        data: 'Express Delivery'
     },
     {
         src: '../../../assets/images/gst billing.svg',
