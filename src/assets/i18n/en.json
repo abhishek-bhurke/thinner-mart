@@ -298,5 +298,7 @@
     "Add Coupon": "Add Coupon",
     "Cancel": "Cancel",
     "Invoice": "Invoice",
-    "123": ""
+    "123": "",
+    "Delivery charges extra paid": "Delivery charges extra paid by you at the time of delivery. Delivery charges are not included.",
+    "Additional delivery charges apply": "Additional delivery charges apply. We'll send the parcel via transport, and you'll need to pay transport charges directly to the transporter upon delivery (To Pay mode)."
 }
