@@ -1,6 +1,6 @@
 export const environment = {
     production: false,
-    API_URL: 'https://tnmapi.techket.shop',
+    API_URL: 'https://tnmapi.techket.xyz',
     razorPay_key: 'rzp_test_RLpSbOvcIsoP5h',
     FRONTEND_URL: 'http://localhost:4200'
 };
